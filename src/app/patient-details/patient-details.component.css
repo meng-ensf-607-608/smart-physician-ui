@@ -1,0 +1,114 @@
+/* Container for the entire page */
+.patient-details-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header Section for Name and Contact */
+.patient-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.patient-header h1 {
+  font-size: 2rem;
+  color: #1a1a1a;
+}
+
+.patient-header p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Flex container for Personal and Medical Info sections */
+.info-sections {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+/* Styling for Personal Details and Medical History */
+.personal-details, .medical-history {
+  width: 48%;
+}
+
+.personal-details h2, .medical-history h2 {
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.personal-details p, .medical-history p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+/* Symptoms Section */
+.symptoms-section {
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+/* Styling for textarea and Get Suggestions button */
+.symptoms-section textarea {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 8px;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+.get-suggestions {
+  display: block;
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+/* Suggestions Section */
+.suggestions-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.suggestion-box {
+  flex: 1 1 calc(33% - 1rem);
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Additional Info Section (Lifestyle and Dietary Changes) */
+.additional-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.lifestyle-changes, .dietary-changes {
+  width: 48%;
+  background-color: #e9f8e9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.lifestyle-changes h3, .dietary-changes h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.lifestyle-changes p, .dietary-changes p {
+  font-size: 0.9rem;
+  color: #666;
+}

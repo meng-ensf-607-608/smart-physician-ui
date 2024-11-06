@@ -1,0 +1,28 @@
+<div class="appointments-page">
+  <button class="logout-button" (click)="logOut()">Log Out</button>
+  <h2>Welcome, Amanda</h2>
+  <p>{{ currentDate }}</p>
+  <!-- Main Content Divided into Two Sides -->
+  <div class="appointments-container">
+    <!-- Left Side: Appointments List -->
+    <div class="appointments-list">
+      <h2>Today's Appointments</h2>
+      <ul>
+        <li *ngFor="let patient of patients" (click)="navigateToPatientDetails(patient)">
+          <span>{{ patient.name }}</span>
+          <span>{{ patient.time }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Side: Profile Section -->
+    <div class="profile-section">
+      <!-- Edit Button in Top Right Corner of Profile Section -->
+      <button class="edit-button">Edit</button>
+      <h2>Amanda's Profile</h2>
+      <p>Email: amanda&#64;example.com</p>
+      <p>Phone: +1-123-456-7890</p>
+      <p>Address: 1234 Street, City, Country</p>
+    </div>
+  </div>
+</div>
