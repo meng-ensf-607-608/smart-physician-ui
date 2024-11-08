@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## Run application as a docker container
+
+1. **Install Docker Engine**:
+   For instructions on how to install Docker Engine on your machine, see: https://docs.docker.com/engine/install/
+
+
+3. **Build the image**:
+    ```sh
+    docker build -t physician-assistant .
+    ```
+
+4. **Run the Application**:
+    ```sh
+    docker run -d --name physician-assistant-ui -p 4000:4000 physician-assistant 
+    `
