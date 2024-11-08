@@ -33,12 +33,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
    For instructions on how to install Docker Engine on your machine, see: https://docs.docker.com/engine/install/
 
 
-3. **Build the image**:
+2. **Build the image**:
     ```sh
     docker build -t physician-assistant .
     ```
 
-4. **Run the Application**:
+3. **Run the Application**:
     ```sh
     docker run -d --name physician-assistant-ui -p 4000:4000 physician-assistant 
     `
