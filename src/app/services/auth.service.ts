@@ -13,7 +13,7 @@ export class AuthService {
 
   // Login request to the backend
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/login`, { username: email, password });
+    return this.http.post(`${this.apiUrl}/auth/login`, { email: email, password: password });
   }
 
   // Save the JWT token

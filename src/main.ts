@@ -4,6 +4,6 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(withInterceptorsFromDi()) // This makes HttpClient available globally
+    provideHttpClient(withInterceptorsFromDi()) // Configure HttpClient globally
   ]
 }).catch(err => console.error(err));
