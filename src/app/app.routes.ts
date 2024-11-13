@@ -5,8 +5,8 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
-  { path: '', component: SignInComponent },
-  { path: 'appointments', component: AppointmentsComponent },
+  //{ path: '', component: SignInComponent },
+  { path: '', component: AppointmentsComponent },
   { path: 'patient-details', component: PatientDetailsComponent },
   { path: 'profile', component: ProfileComponent },
 ];
