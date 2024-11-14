@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-//import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -16,7 +16,7 @@ export class SignInComponent {
 
   constructor(
     private router: Router,
-    //private authService: AuthService,
+    private authService: AuthService,
     private formBuilder: FormBuilder
   ) {
     this.signInForm = this.formBuilder.group({
@@ -31,7 +31,7 @@ export class SignInComponent {
     const { email, password } = this.signInForm.value;
     console.log(email)
 
-    /* this.authService.login(email, password).subscribe(
+    this.authService.login(email, password).subscribe(
       (response) => {
         this.authService.saveToken(response.token);
         this.router.navigate(['/appointments']);
@@ -39,6 +39,6 @@ export class SignInComponent {
       (error) => {
         console.error('Login failed', error);
       }
-    ); */
+    );
   }
 }
