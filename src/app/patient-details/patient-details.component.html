@@ -55,7 +55,7 @@
   <!-- Modal Structure -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-content">
-      <span class="close-btn" id="closeBtn">&times;</span>
+      <span class="close-btn" id="closeBtn" (click)="closePrescriptionPopup()">&times;</span>
       <h2>Prescription Details</h2>
 
       <!-- Form Fields for Cause and Prescription, with labels and inputs in one row -->
@@ -70,7 +70,7 @@
       </div>
 
       <!-- Submit button -->
-      <button class="save-prescripitions">Save</button>
+      <button class="save-prescriptions" (click)="savePrescription()">Save</button>
     </div>
   </div>
 

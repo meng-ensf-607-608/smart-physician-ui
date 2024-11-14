@@ -11,6 +11,12 @@ import { Router } from '@angular/router';
 export class PatientDetailsComponent implements OnInit {
   patientData: any;
 
+  // Object to hold prescription details
+  prescriptionDetails = {
+    cause: '',
+    prescription: ''
+  };
+
   // Method to open the Prescription Popup
   openPrescriptionPopup() {
     const modal = document.getElementById('modalOverlay');
@@ -25,6 +31,12 @@ export class PatientDetailsComponent implements OnInit {
     if (modal) {
       modal.style.display = 'none';  // Hide the modal
     }
+  }
+
+  // Method to save the prescription details and close the popup
+  savePrescription() {
+    console.log('Saving prescription details:', this.prescriptionDetails);
+    this.closePrescriptionPopup();
   }
 
   constructor(private router: Router) {
