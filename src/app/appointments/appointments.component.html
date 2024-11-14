@@ -1,28 +1,29 @@
 <div class="appointments-page">
-  <button class="logout-button" (click)="logOut()">Log Out</button>
-  <h2>Welcome, Amanda</h2>
-  <p>{{ currentDate }}</p>
-  <!-- Main Content Divided into Two Sides -->
-  <div class="appointments-container">
-    <!-- Left Side: Appointments List -->
+  <div class="content">
+    <!-- Appointments list -->
     <div class="appointments-list">
-      <h2>Today's Appointments</h2>
+      <h2>Welcome, {{ profile?.name }}</h2>
+      <p>{{ currentDate }}</p>
+
+      <h3>Today's Appointments</h3>
       <ul>
         <li *ngFor="let patient of patients" (click)="navigateToPatientDetails(patient)">
-          <span>{{ patient.name }}</span>
-          <span>{{ patient.time }}</span>
+          <span>{{ patient.name }}</span> - <span>{{ patient.time }}</span>
         </li>
       </ul>
     </div>
 
-    <!-- Right Side: Profile Section -->
-    <div class="profile-section">
-      <!-- Edit Button in Top Right Corner of Profile Section -->
-      <button class="edit-button" style="display: none;">Edit</button>
-      <h2>Amanda's Profile</h2>
-      <p>Email: amanda&#64;example.com</p>
-      <p>Phone: +1-123-456-7890</p>
-      <p>Address: 1234 Street, City, Country</p>
+    <!-- Profile Sidebar -->
+    <div class="profile-sidebar">
+      <div *ngIf="profile">
+        <h2>{{ profile.name }}</h2>
+        <p>Email: {{ profile.email }}</p>
+        <p>Phone: {{ profile.phone }}</p>
+        <p>Age: {{ profile.age }}</p>
+        <p>Gender: {{ profile.gender }}</p>
+        <p>Occupation: {{ profile.occupation }}</p>
+        <button class="edit-button" style="display: none;">Edit</button>
+      </div>
     </div>
   </div>
 </div>
