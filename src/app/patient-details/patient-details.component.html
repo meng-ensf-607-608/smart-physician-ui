@@ -49,5 +49,29 @@
         <p>Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
       </div>
     </div>
+    <button class="get-prescriptions" (click)="openPrescriptionPopup()">Prescriptions</button>
   </div>
-</div>
+
+  <!-- Modal Structure -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <span class="close-btn" id="closeBtn">&times;</span>
+      <h2>Prescription Details</h2>
+
+      <!-- Form Fields for Cause and Prescription, with labels and inputs in one row -->
+      <div class="form-row">
+        <label for="cause">Cause:</label>
+        <input type="text" id="cause" name="cause">
+      </div>
+
+      <div class="form-row">
+        <label for="prescription">Prescription:</label>
+        <input type="text" id="prescription" name="prescription">
+      </div>
+
+      <!-- Submit button -->
+      <button class="save-prescripitions">Save</button>
+    </div>
+  </div>
+
+  

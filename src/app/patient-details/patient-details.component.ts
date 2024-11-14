@@ -11,6 +11,22 @@ import { Router } from '@angular/router';
 export class PatientDetailsComponent implements OnInit {
   patientData: any;
 
+  // Method to open the Prescription Popup
+  openPrescriptionPopup() {
+    const modal = document.getElementById('modalOverlay');
+    if (modal) {
+      modal.style.display = 'block';  // Show the modal
+    }
+  }
+
+  // Method to close the Prescription Popup
+  closePrescriptionPopup() {
+    const modal = document.getElementById('modalOverlay');
+    if (modal) {
+      modal.style.display = 'none';  // Hide the modal
+    }
+  }
+
   constructor(private router: Router) {
     // Retrieve the state data (patient details) passed from the Appointments component
     const navigation = this.router.getCurrentNavigation();
