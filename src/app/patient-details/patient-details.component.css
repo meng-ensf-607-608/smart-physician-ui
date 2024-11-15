@@ -1,182 +1,167 @@
-/* Container for the entire page */
-.patient-details-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-/* Header Section for Name and Contact */
-.patient-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.patient-header h1 {
-  font-size: 2rem;
-  color: #1a1a1a;
-}
-
-.patient-header p {
-  font-size: 1rem;
-  color: #666;
-}
-
-/* Flex container for Personal and Medical Info sections */
-.info-sections {
+/* Main page styling */
+.patient-details-page {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f6f8; /* Light background for contrast */
 }
 
-/* Styling for Personal Details and Medical History */
-.personal-details, .medical-history {
-  width: 48%;
-}
-
-.personal-details h2, .medical-history h2 {
-  font-size: 1.2rem;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-}
-
-.personal-details p, .medical-history p {
-  font-size: 1rem;
-  color: #333;
-  margin: 0.5rem 0;
-}
-
-/* Symptoms Section */
-.symptoms-section {
-  background-color: #f0f0f0;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-top: 2rem;
-}
-
-/* Styling for textarea and Get Suggestions button */
-.symptoms-section textarea {
+/* Card for patient details */
+.patient-card {
+  max-width: 800px;
   width: 100%;
-  min-height: 50px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   border-radius: 8px;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  margin-bottom: 1rem;
+  background-color: #ffffff;
 }
 
-.get-suggestions {
-  display: block;
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 1rem;
+/* Header and title styling */
+.patient-card mat-card-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: #3f51b5; /* Primary color for emphasis */
+  text-align: center;
 }
 
-/* Suggestions Section */
-.suggestions-container {
+.patient-card mat-card-subtitle {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #3f51b5;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.mat-mdc-card-header {
+  display: initial;
+  padding: 16px 16px 0;
+}
+
+/* Contact information styling */
+.contact-info {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: #666666;
+}
+
+/* Patient details section styling */
+.patient-details {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 1em;
+  color: #333333;
 }
 
-.suggestion-box {
-  flex: 1 1 calc(33% - 1rem);
-  background-color: #fff;
-  padding: 1rem;
+.patient-details p {
+  margin: 0;
+  width: 45%; /* Adjust width as needed */
+}
+
+/* Medical history section styling */
+.medical-history-card {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9fafb;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Additional Info Section (Lifestyle and Dietary Changes) */
-.additional-info {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-}
-
-.lifestyle-changes, .dietary-changes {
-  width: 48%;
-  background-color: #e9f8e9;
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.lifestyle-changes h3, .dietary-changes h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.lifestyle-changes p, .dietary-changes p {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.get-prescriptions {
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 1rem;
-}
-
-.modal-overlay { 
-  display: none;/* Hidden by default */
-  position: fixed;
-  top: 0;
-  left: 0;
+.history-table {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  margin-top: 10px;
+  border-collapse: collapse;
 }
 
-.modal-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  z-index: 2;
+.history-table th, .history-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  font-size: 0.95em;
 }
 
-.close-btn {
-  float: right;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.form-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  height: 40px;
-}
-
-.form-row label {
-  width: 30%; /* Adjust width as needed */
+.history-table th {
   font-weight: bold;
-  margin-right: 10px;
+  color: #3f51b5; /* Primary color for table headers */
+  background-color: #f1f3f4; /* Light background for headers */
 }
 
-.form-row input[type="text"] {
-  width: 70%; /* Adjust width as needed */
-  padding: 8px;
-  box-sizing: border-box;
+.history-table td {
+  color: #555555;
 }
 
-.save-prescriptions {
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 1rem;
+/* Symptoms section styling */
+.symptoms-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Text area styling */
+.symptoms-label {
+  font-size: 1.1em;
+  color: #3f51b5;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.styled-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.styled-textarea:focus {
+  border-color: #3f51b5;
+  box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1), 0 0 5px rgba(63, 81, 181, 0.2);
+  outline: none;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Button styling */
+.mat-raised-button {
+  min-width: 160px;
+  padding: 10px;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px;
+}
+
+.mat-raised-button:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.styled-button.primary {
+  background-color: #3f51b5; /* Primary color */
+}
+
+.styled-button.primary:hover {
+  background-color: #36489a;
+}
+
+/* LLM Suggestions component placeholder */
+app-llm-suggestions {
+  display: block;
+  margin-top: 20px;
 }
