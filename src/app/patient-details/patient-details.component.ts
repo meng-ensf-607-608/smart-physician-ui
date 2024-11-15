@@ -1,54 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
+import { LlmSuggestionsComponent } from '../llm-suggestions/llm-suggestions.component';
 
 @Component({
   selector: 'app-patient-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, MatCardModule, MatTableModule,MatButtonModule, LlmSuggestionsComponent],
   templateUrl: './patient-details.component.html',
-  styleUrls: ['./patient-details.component.css']  // Note the correction to "styleUrls" instead of "styleUrl"
+  styleUrls: ['./patient-details.component.css']
 })
 export class PatientDetailsComponent implements OnInit {
-  patientData: any;
-
-  // Object to hold prescription details
-  prescriptionDetails = {
-    cause: '',
-    prescription: ''
+  patient = {
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    phone: '403-456-7890',
+    age: 23,
+    gender: 'Male',
+    occupation: 'Engineer',
+    chronicCondition: 'Diabetes'
   };
 
-  // Method to open the Prescription Popup
-  openPrescriptionPopup() {
-    const modal = document.getElementById('modalOverlay');
-    if (modal) {
-      modal.style.display = 'block';  // Show the modal
-    }
-  }
+  recentAppointments = [
+    { date: '2023-09-01', condition: 'Diabetes', prescription: 'Azetomyphil' },
+    { date: '2023-08-15', condition: 'High BP', prescription: 'BetaBlock' },
+    { date: '2023-07-30', condition: 'Cold', prescription: 'Paracetamol' }
+  ];
 
-  // Method to close the Prescription Popup
-  closePrescriptionPopup() {
-    const modal = document.getElementById('modalOverlay');
-    if (modal) {
-      modal.style.display = 'none';  // Hide the modal
-    }
-  }
+  displayedColumns: string[] = ['date', 'condition', 'prescription'];
 
-  // Method to save the prescription details and close the popup
-  savePrescription() {
-    console.log('Saving prescription details:', this.prescriptionDetails);
-    this.closePrescriptionPopup();
-  }
-
-  constructor(private router: Router) {
-    // Retrieve the state data (patient details) passed from the Appointments component
-    const navigation = this.router.getCurrentNavigation();
-    this.patientData = navigation?.extras.state?.['data'];
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 
-  submitForm() {
-    // Placeholder for form submission logic (e.g., displaying suggestions)
-    console.log("Form submitted with patient data:", this.patientData);
+  showSuggestions: boolean = false;
+
+  getSuggestions() {
+    this.showSuggestions = true;
   }
 }

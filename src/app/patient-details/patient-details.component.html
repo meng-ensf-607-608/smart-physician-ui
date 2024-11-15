@@ -1,77 +1,56 @@
-<div class="patient-details-container">
-  <!-- Patient Header with Name and Contact -->
-  <div class="patient-header">
-    <h1>John Doe</h1>
-    <p>john.doe&#64;email.com</p>
-    <p><span class="contact-icon">📞</span> 4034567890</p>
-  </div>
-
-  <!-- Personal and Medical Information Section -->
-  <div class="info-sections">
-    <!-- Personal Details Section -->
-    <div class="personal-details">
-      <h2>Patient Details</h2>
-      <p><strong>Age:</strong> 23</p>
-      <p><strong>Gender:</strong> Male</p>
-      <p><strong>Occupation:</strong> Engineer</p>
-    </div>
-
-    <!-- Medical History Section -->
-    <div class="medical-history">
-      <h2>Medical History</h2>
-      <p><strong>Date:</strong> 20-09-2024</p>
-      <p><strong>Chronic Conditions:</strong> Diabetes</p>
-      <p><strong>Prescription:</strong> Azetomyphil</p>
-    </div>
-  </div>
-
-  <!-- Symptoms and Suggestions Section -->
-  <div class="symptoms-section">
-    <textarea placeholder="Symptoms:"></textarea>
-    <button class="get-suggestions">Get Suggestions</button>
-
-    <div class="suggestions-container">
-      <div class="suggestion-box">
-        <p><strong>Cause:</strong> Associated Symptoms:</p>
-      </div>
-      <div class="suggestion-box">
-        <p><strong>Cause:</strong> Associated Symptoms:</p>
-      </div>
-    </div>
-
-    <div class="additional-info">
-      <div class="lifestyle-changes">
-        <h3> Lifestyle Changes:</h3>
-        <p>Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
-      </div>
-      <div class="dietary-changes">
-        <h3> Dietary Changes:</h3>
-        <p>Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
-      </div>
-    </div>
-    <button class="get-prescriptions" (click)="openPrescriptionPopup()">Prescriptions</button>
-  </div>
-
-  <!-- Modal Structure -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-content">
-      <span class="close-btn" id="closeBtn" (click)="closePrescriptionPopup()">&times;</span>
-      <h2>Prescription Details</h2>
-
-      <!-- Form Fields for Cause and Prescription, with labels and inputs in one row -->
-      <div class="form-row">
-        <label for="cause">Cause:</label>
-        <input type="text" id="cause" name="cause">
+<div class="patient-details-page">
+  <!-- Main Card for Patient Details -->
+  <mat-card class="patient-card">
+    <mat-card-header>
+      <mat-card-title>{{ patient.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="contact-info">
+        <span>{{ patient.email }}</span> | <span>{{ patient.phone }}</span>
       </div>
 
-      <div class="form-row">
-        <label for="prescription">Prescription:</label>
-        <input type="text" id="prescription" name="prescription">
+      <div class="patient-details">
+        <p><strong>Age:</strong> {{ patient.age }}</p>
+        <p><strong>Gender:</strong> {{ patient.gender }}</p>
+        <p><strong>Occupation:</strong> {{ patient.occupation }}</p>
+        <p><strong>Chronic Conditions:</strong> {{ patient.chronicCondition }}</p>
       </div>
 
-      <!-- Submit button -->
-      <button class="save-prescriptions" (click)="savePrescription()">Save</button>
-    </div>
-  </div>
+      <!-- Medical History as Table with Last Three Appointments -->
+      <mat-card class="medical-history-card">
+        <mat-card-subtitle>Medical History</mat-card-subtitle>
+        <table mat-table [dataSource]="recentAppointments" class="mat-elevation-z8 history-table">
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let appointment"> {{ appointment.date | date }} </td>
+          </ng-container>
+          <ng-container matColumnDef="condition">
+            <th mat-header-cell *matHeaderCellDef> Condition </th>
+            <td mat-cell *matCellDef="let appointment"> {{ appointment.condition }} </td>
+          </ng-container>
+          <ng-container matColumnDef="prescription">
+            <th mat-header-cell *matHeaderCellDef> Prescription </th>
+            <td mat-cell *matCellDef="let appointment"> {{ appointment.prescription }} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card>
 
-  
+      <!-- Symptoms Section -->
+      <mat-card class="symptoms-section">
+        <mat-card-content>
+          <label for="symptoms-textarea" class="symptoms-label">Enter Symptoms:</label>
+          <textarea id="symptoms-textarea" placeholder="Describe the symptoms..." class="styled-textarea"></textarea>
+          <div class="button-group">
+            <button mat-raised-button color="primary" (click)="getSuggestions()">Get Suggestions</button>
+            <button mat-raised-button color="primary">Write Prescription</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- LLM Suggestions Component -->
+      <app-llm-suggestions *ngIf="showSuggestions"></app-llm-suggestions>
+    </mat-card-content>
+  </mat-card>
+</div>
