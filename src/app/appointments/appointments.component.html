@@ -12,7 +12,7 @@
       <ul *ngIf="appointments.length > 0; else noAppointments">
         <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointmentDetails.get(appointment.appointmentId).patient)">
           <span>{{ appointmentDetails.get(appointment.appointmentId).patient.name }}</span>
-          <span>{{ appointment.startTime | date: 'HH:mm' }}</span>
+          <span>{{ appointment.startTime + 'Z' | date: 'HH:mm' }}</span>
         </li>
       </ul>
       <!-- Fallback content if there are no appointments -->
