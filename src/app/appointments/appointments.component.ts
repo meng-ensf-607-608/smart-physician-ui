@@ -61,8 +61,8 @@ export class AppointmentsComponent implements OnInit {
     });
   }
 
-  navigateToPatientDetails(appointment: any) {
-    this.router.navigate(['/patient-details'], { state: { data: appointment } });
+  navigateToPatientDetails(patient: any) {
+    this.router.navigate(['/patient-details'], { state: {data: patient} });
   }
 
   logOut() {
