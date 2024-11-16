@@ -13,15 +13,12 @@ import { LlmSuggestionsComponent } from '../llm-suggestions/llm-suggestions.comp
   styleUrls: ['./patient-details.component.css']
 })
 export class PatientDetailsComponent implements OnInit {
-  patient = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '403-456-7890',
-    age: 23,
-    gender: 'Male',
-    occupation: 'Engineer',
-    chronicCondition: 'Diabetes'
-  };
+  patient: any = null;
+
+  ngOnInit(): void {
+    this.patient = window.history.state.data;
+    console.log(this.patient)
+  }
 
   recentAppointments = [
     { date: '2023-09-01', symptoms: 'headache, neck strain', diagnosis: 'Migrain', prescriptions: ['Azetomyphil | 100 mg | 3 times per day | 4 days'] },
@@ -32,8 +29,6 @@ export class PatientDetailsComponent implements OnInit {
   displayedColumns: string[] = ['date', 'symptoms', 'diagnosis', 'prescriptions'];
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   showSuggestions: boolean = false;
 

@@ -10,7 +10,7 @@
     <div class="appointments-list">
       <h2>Today's Appointments</h2>
       <ul *ngIf="appointments.length > 0; else noAppointments">
-        <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointment)">
+        <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointmentDetails.get(appointment.appointmentId).patient)">
           <span>{{ appointmentDetails.get(appointment.appointmentId).patient.name }}</span>
           <span>{{ appointment.startTime | date: 'HH:mm' }}</span>
         </li>
