@@ -13,14 +13,13 @@ import { MatCardModule } from '@angular/material/card';
 export class LlmSuggestionsComponent {
   @Input() suggestions: any;
 
-
+  ngOnChanges(): void {
+    console.log(this.suggestions)
+  }
 /*   suggestions = [
     { cause: 'High Blood Pressure', symptoms: 'Headache, Dizziness, Blurred Vision' },
     { cause: 'Dehydration', symptoms: 'Fatigue, Dry Mouth, Thirst' },
     { cause: 'Stress', symptoms: 'Anxiety, Insomnia, Muscle Tension' }
   ]; */
-  ngOnInit(): void {
-    console.log(this.suggestions)
-  }
 
 }

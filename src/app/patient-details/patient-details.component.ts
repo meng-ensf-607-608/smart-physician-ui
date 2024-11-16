@@ -45,7 +45,7 @@ export class PatientDetailsComponent implements OnInit {
     };
     this.llmService.getSuggestions(inputData).subscribe({
       next: (data) => {
-        this.suggestions = data
+        this.suggestions = data.output
       },
       error: (error) => {
         console.error('Error fetching suggestions from LLM', error);

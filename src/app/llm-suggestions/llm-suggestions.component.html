@@ -6,12 +6,12 @@
       </mat-card-header>
       <mat-card-content>
         <div class="suggestion-item">
-          <p><strong>Cause:</strong> High Blood Pressure</p>
-          <p><strong>Associated Symptoms:</strong> Headache, Dizziness</p>
+          <p><strong>Cause:</strong> {{ suggestions.likely_causes[0].cause}}</p>
+          <p><strong>Associated Symptoms:</strong> {{ suggestions.likely_causes[0].symptoms}}</p>
         </div>
         <div class="suggestion-item">
-          <p><strong>Cause:</strong> Dehydration</p>
-          <p><strong>Associated Symptoms:</strong> Fatigue, Thirst</p>
+          <p><strong>Cause:</strong> {{ suggestions.likely_causes[1].cause}}</p>
+          <p><strong>Associated Symptoms:</strong> {{ suggestions.likely_causes[1].symptoms}}</p>
         </div>
       </mat-card-content>
     </mat-card>
@@ -22,7 +22,9 @@
         <mat-card-title>Lifestyle Changes</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Engage in regular physical activities and reduce stress to manage blood pressure.</p>
+        <ul>
+          <li *ngFor="let item of suggestions.lifestyle_changes">{{item}}</li>
+        </ul>
       </mat-card-content>
     </mat-card>
   
@@ -32,7 +34,9 @@
         <mat-card-title>Dietary Changes</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Incorporate more water-rich foods and reduce salt intake for balanced hydration.</p>
+        <ul>
+          <li *ngFor="let item of suggestions.dietary_changes">{{item}}</li>
+        </ul>
       </mat-card-content>
     </mat-card>
   </div>
