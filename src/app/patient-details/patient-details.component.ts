@@ -4,6 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { LlmSuggestionsComponent } from '../llm-suggestions/llm-suggestions.component';
+import { LlmService } from '../services/llm.service';
 
 @Component({
   selector: 'app-patient-details',
@@ -14,6 +15,8 @@ import { LlmSuggestionsComponent } from '../llm-suggestions/llm-suggestions.comp
 })
 export class PatientDetailsComponent implements OnInit {
   patient: any = null;
+  symptoms: string = '';
+  suggestions: any = null
 
   ngOnInit(): void {
     this.patient = window.history.state.data;
@@ -28,11 +31,26 @@ export class PatientDetailsComponent implements OnInit {
 
   displayedColumns: string[] = ['date', 'symptoms', 'diagnosis', 'prescriptions'];
 
-  constructor() {}
+  constructor(private llmService: LlmService) {}
 
   showSuggestions: boolean = false;
 
-  getSuggestions() {
+  getSuggestions(symptoms: string) {
+    var inputData: any = {
+      complaints: symptoms,
+      age: this.patient.age,
+      gender: this.patient.gender,
+      occupation: this.patient.occupation,
+      chronic_conditions: this.patient.chronic_conditions
+    };
+    this.llmService.getSuggestions(inputData).subscribe({
+      next: (data) => {
+        this.suggestions = data
+      },
+      error: (error) => {
+        console.error('Error fetching suggestions from LLM', error);
+      }
+    });
     this.showSuggestions = true;
   }
 }

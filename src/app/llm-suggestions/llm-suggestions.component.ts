@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
@@ -11,10 +11,16 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./llm-suggestions.component.css']
 })
 export class LlmSuggestionsComponent {
-  suggestions = [
+  @Input() suggestions: any;
+
+
+/*   suggestions = [
     { cause: 'High Blood Pressure', symptoms: 'Headache, Dizziness, Blurred Vision' },
     { cause: 'Dehydration', symptoms: 'Fatigue, Dry Mouth, Thirst' },
     { cause: 'Stress', symptoms: 'Anxiety, Insomnia, Muscle Tension' }
-  ];
+  ]; */
+  ngOnInit(): void {
+    console.log(this.suggestions)
+  }
 
 }
