@@ -33,7 +33,6 @@ export class PatientDetailsComponent implements OnInit {
 
   constructor(private llmService: LlmService) {}
 
-  showSuggestions: boolean = false;
 
   getSuggestions(symptoms: string) {
     var inputData: any = {
@@ -51,6 +50,5 @@ export class PatientDetailsComponent implements OnInit {
         console.error('Error fetching suggestions from LLM', error);
       }
     });
-    this.showSuggestions = true;
   }
 }
