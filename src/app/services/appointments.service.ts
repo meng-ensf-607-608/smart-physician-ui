@@ -30,9 +30,9 @@ export class AppointmentsService {
   getAllAppointmentDetails(appointmentId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/appointments/details/${appointmentId}`, { headers: this.getHeaders() });
   }
-  
+
   // Fetch profile data
-  getProfileData(physicianId: string): Observable<any> {
+  getProfileData(): Observable<any> {
     return this.http.get(`${this.apiUrl}/user/details`, { headers: this.getHeaders() });
   }
 }

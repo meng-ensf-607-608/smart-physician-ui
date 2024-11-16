@@ -24,7 +24,7 @@ export class AppointmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchAppointments();
-    this.fetchProfileData('1'); // Replace '1' with actual physician ID if available
+    this.fetchProfileData(); // Replace '1' with actual physician ID if available
   }
 
   fetchAppointments() {
@@ -50,8 +50,8 @@ export class AppointmentsComponent implements OnInit {
     });
   }
 
-  fetchProfileData(physicianId: string) {
-    this.appointmentsService.getProfileData(physicianId).subscribe({
+  fetchProfileData() {
+    this.appointmentsService.getProfileData().subscribe({
       next: (data) => {
         this.profile = data; // Assuming `data` contains profile info
       },
