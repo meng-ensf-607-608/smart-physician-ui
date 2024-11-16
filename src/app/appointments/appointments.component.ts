@@ -12,7 +12,8 @@ import { ProfileComponent } from '../profile/profile.component';
   styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent implements OnInit {
-  patients: any[] = [];
+  appointments: any[] = [];
+  appointmentDetails: Map<string, any> = new Map();
   profile: any = null; // Profile data
   currentDate: string = new Date().toLocaleDateString();
 
@@ -23,13 +24,25 @@ export class AppointmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchAppointments();
-    this.fetchProfileData('1'); // Replace '1' with actual physician ID if available
+    this.fetchProfileData(); // Replace '1' with actual physician ID if available
   }
 
   fetchAppointments() {
     this.appointmentsService.getAllAppointments().subscribe({
       next: (data) => {
-        this.patients = data; // Assuming `data` is an array of appointments
+        for (let appointment of data) {
+          if(isToday(appointment.startTime)) {this.appointments.push(appointment)};
+        }
+        for (let appointment of this.appointments) {
+          this.appointmentsService.getAllAppointmentDetails(appointment.appointmentId).subscribe({
+            next: (data) => {
+              this.appointmentDetails.set(appointment.appointmentId, data)
+            },
+            error: (error) => {
+              console.error('Error fetching appointment details:', error);
+            }
+          });
+        }
       },
       error: (error) => {
         console.error('Error fetching appointments:', error);
@@ -37,8 +50,8 @@ export class AppointmentsComponent implements OnInit {
     });
   }
 
-  fetchProfileData(physicianId: string) {
-    this.appointmentsService.getProfileData(physicianId).subscribe({
+  fetchProfileData() {
+    this.appointmentsService.getProfileData().subscribe({
       next: (data) => {
         this.profile = data; // Assuming `data` contains profile info
       },
@@ -48,12 +61,24 @@ export class AppointmentsComponent implements OnInit {
     });
   }
 
-  navigateToPatientDetails(patient: any) {
-    this.router.navigate(['/patient-details'], { state: { data: patient } });
+  navigateToPatientDetails(appointment: any) {
+    this.router.navigate(['/patient-details'], { state: { data: appointment } });
   }
 
   logOut() {
     console.log("Logging out...");
     this.router.navigate(['/']);
   }
+  
+}
+
+function isToday(dateString: string): boolean {
+  const inputDate = new Date(dateString);
+  const today = new Date();
+
+  return (
+    inputDate.getDate() === today.getDate() &&
+    inputDate.getMonth() === today.getMonth() && // Months are zero-indexed
+    inputDate.getFullYear() === today.getFullYear()
+  );
 }
