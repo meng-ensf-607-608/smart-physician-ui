@@ -72,13 +72,14 @@ export class AppointmentsComponent implements OnInit {
   
 }
 
-function isToday(dateString: string): boolean {
-  const inputDate = new Date(dateString);
+function isToday(utcDateString: string): boolean {
   const today = new Date();
+  let utcWithTimezone = utcDateString + 'Z'; // Append 'Z' to indicate UTC
+  let localDate = new Date(utcWithTimezone)
 
   return (
-    inputDate.getDate() === today.getDate() &&
-    inputDate.getMonth() === today.getMonth() && // Months are zero-indexed
-    inputDate.getFullYear() === today.getFullYear()
+    localDate.getDate() === today.getDate() &&
+    localDate.getMonth() === today.getMonth() && // Months are zero-indexed
+    localDate.getFullYear() === today.getFullYear()
   );
 }
