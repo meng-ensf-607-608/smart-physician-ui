@@ -44,7 +44,8 @@
           <textarea id="symptoms-textarea" placeholder="Describe the symptoms..." class="styled-textarea"></textarea>
           <div class="button-group">
             <button mat-raised-button color="primary" (click)="getSuggestions()">Get Suggestions</button>
-            <button mat-raised-button color="primary">Write Prescription</button>
+            <button mat-raised-button color="primary" (click)="openPrescriptionDialog()">Write Prescription</button>
+            <!-- <button mat-raised-button color="primary">Write Prescription</button> -->
           </div>
         </mat-card-content>
       </mat-card>
