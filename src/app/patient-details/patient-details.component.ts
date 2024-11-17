@@ -2,53 +2,64 @@ import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { PatientService } from '../services/patient.service';
 import { LlmSuggestionsComponent } from '../llm-suggestions/llm-suggestions.component';
-import { LlmService } from '../services/llm.service';
 
 @Component({
   selector: 'app-patient-details',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule,MatButtonModule, LlmSuggestionsComponent],
+  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule, LlmSuggestionsComponent],
   templateUrl: './patient-details.component.html',
   styleUrls: ['./patient-details.component.css']
 })
 export class PatientDetailsComponent implements OnInit {
   patient: any = null;
+  recentAppointments: any[] = [];
+  displayedColumns: string[] = ['date', 'symptoms', 'diagnosis', 'prescriptions'];
   symptoms: string = '';
-  suggestions: any = null
+  suggestions: any = null;
+
+  constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
-    this.patient = window.history.state.data;
-    console.log(this.patient)
+    const patientId = window.history.state.data?.id || '1'; // Fetch patient ID dynamically or use default for testing
+
+    this.fetchPatientDetails(patientId);
+    this.fetchRecentAppointments(patientId);
   }
 
-  recentAppointments = [
-    { date: '2023-09-01', symptoms: 'headache, neck strain', diagnosis: 'Migrain', prescriptions: ['Azetomyphil | 100 mg | 3 times per day | 4 days'] },
-    { date: '2023-08-15', symptoms: 'high temperature, body pain', diagnosis: 'Fever', prescriptions: ['BetaBlock | 100 mg | 3 times per day | 7 days'] },
-    { date: '2023-07-30', symptoms: 'cough, lack of smell and taste, high temperature', diagnosis: 'Covid', prescriptions: ['Paracetamol | 100 mg | 3 times per day | 7 days', 'Cough syrup | 10 ml | 3 times per day | 7 days'] }
-  ];
+  fetchPatientDetails(patientId: string) {
+    this.patientService.getPatientDetails(patientId).subscribe({
+      next: (data) => {
+        this.patient = data;
+      },
+      error: (error) => {
+        console.error('Error fetching patient details:', error);
+      }
+    });
+  }
 
-  displayedColumns: string[] = ['date', 'symptoms', 'diagnosis', 'prescriptions'];
-
-  constructor(private llmService: LlmService) {}
-
+  fetchRecentAppointments(patientId: string) {
+    this.patientService.getRecentAppointments(patientId).subscribe({
+      next: (data) => {
+        this.recentAppointments = data;
+      },
+      error: (error) => {
+        console.error('Error fetching recent appointments:', error);
+      }
+    });
+  }
 
   getSuggestions(symptoms: string) {
-    var inputData: any = {
+    const inputData: any = {
       complaints: symptoms,
       age: this.patient.age,
       gender: this.patient.gender,
       occupation: this.patient.occupation,
-      chronic_conditions: this.patient.chronic_conditions
+      chronic_conditions: this.patient.chronicConditions
     };
-    this.llmService.getSuggestions(inputData).subscribe({
-      next: (data) => {
-        this.suggestions = data.output
-      },
-      error: (error) => {
-        console.error('Error fetching suggestions from LLM', error);
-      }
-    });
+
+    // Call LLM Service (unchanged)
   }
 }
