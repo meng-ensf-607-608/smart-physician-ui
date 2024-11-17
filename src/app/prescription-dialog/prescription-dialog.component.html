@@ -1,59 +1,64 @@
-<h2>Prescription Details</h2>
+<h2 class="title">Prescription Details</h2>
+<div class="dialog-container">
+<form [formGroup]="prescriptionForm">
+  <div class="section">
+    <h4>Appointment Notes</h4>
+    <!-- <div class="form-group">
+      <label for="appointmentId">Appointment ID*</label>
+      <input type="text" id="appointmentId" formControlName="appointmentId" required>
+    </div> -->
 
-<div class="form-container">
-    <h2>Appointment Notes</h2>
-    <form>
-      <div class="form-group">
-        <label for="appointmentId">Appointment ID:</label>
-        <input id="appointmentId" type="text" [(ngModel)]="appointmentNotes.appointmentId" name="appointmentId" />
-      </div>
-  
-      <div class="form-group">
-        <label for="symptoms">Symptoms:</label>
-        <input id="symptoms" type="text" [(ngModel)]="appointmentNotes.symptoms" name="symptoms" />
-      </div>
-  
-      <div class="form-group">
-        <label for="diagnosis">Diagnosis:</label>
-        <input id="diagnosis" type="text" [(ngModel)]="appointmentNotes.diagnosis" name="diagnosis" />
-      </div>
-  
-      <div class="form-group">
-        <label for="additionalDetails">Additional Details:</label>
-        <input id="additionalDetails" type="text" [(ngModel)]="appointmentNotes.additionalDetails" name="additionalDetails" />
-      </div>
-  
-      <h2>Prescriptions</h2>
-      <div *ngFor="let prescription of prescriptions; let i = index" class="prescription-group">
-        <h3>Prescription {{ i + 1 }}</h3>
-        <div class="form-group">
-          <label for="medication-{{ i }}">Medication:</label>
-          <input
-            id="medication-{{ i }}"
-            type="text"
-            [(ngModel)]="prescription.medication"
-            name="medication-{{ i }}"
-          />
-        </div>
-  
-        <div class="form-group">
-          <label for="dosage-{{ i }}">Dosage:</label>
-          <input id="dosage-{{ i }}" type="text" [(ngModel)]="prescription.dosage" name="dosage-{{ i }}" />
-        </div>
-  
-        <div class="form-group">
-          <label for="duration-{{ i }}">Duration:</label>
-          <input id="duration-{{ i }}" type="text" [(ngModel)]="prescription.duration" name="duration-{{ i }}" />
-        </div>
-  
-        <div class="form-group">
-          <label for="frequency-{{ i }}">Frequency:</label>
-          <input id="frequency-{{ i }}" type="text" [(ngModel)]="prescription.frequency" name="frequency-{{ i }}" />
-        </div>
-      </div>
-  
-      <button type="button" (click)="addPrescription()">Add Prescription</button>
-      <button type="submit" (click)="saveForm()">Save</button>
-    </form>
+    <div class="form-group">
+      <label for="symptoms">Symptoms*</label>
+      <textarea id="symptoms" formControlName="symptoms" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="diagnosis">Diagnosis*</label>
+      <textarea id="diagnosis" formControlName="diagnosis" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="additionalNotes">Additional Notes</label>
+      <textarea id="additionalNotes" formControlName="additionalNotes"></textarea>
+    </div>
   </div>
+
+  <div class="section">
+    <h4>Prescription</h4>
+    <div *ngFor="let prescription of prescriptions.controls; let i = index" [formControlName]="i">
+        <h4>Prescription {{ i + 1 }}</h4>
+        <div class="form-group">
+          <label for="medication-{{ i }}">Medication*</label>
+          <input type="text" id="medication-{{ i }}" formControlName="medication" required />
+        </div>
   
+        <div class="form-group">
+          <label for="dosage-{{ i }}">Dosage*</label>
+          <input type="text" id="dosage-{{ i }}" formControlName="dosage" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="duration-{{ i }}">Duration*</label>
+          <input type="text" id="duration-{{ i }}" formControlName="duration" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="frequency-{{ i }}">Frequency*</label>
+          <input type="text" id="frequency-{{ i }}" formControlName="frequency" required />
+        </div>
+  
+        <button type="button" (click)="removePrescription(i)">Remove Prescription</button>
+      </div>
+    </div>
+  
+    <button type="button" (click)="addPrescription()">Add Prescription</button>
+    <button type="button"(click)="savePrescription()">Save Prescription</button>
+  </form>
+</div>
+
+
+  
+
+
+

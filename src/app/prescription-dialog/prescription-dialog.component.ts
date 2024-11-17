@@ -1,117 +1,95 @@
-// import { Component } from '@angular/core';
-// import { MatDialogRef } from '@angular/material/dialog';
-// import { FormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-
-// @Component({
-//   selector: 'app-prescription-dialog',
-//   standalone: true,
-//   imports: [FormsModule, CommonModule],
-//   templateUrl: './prescription-dialog.component.html',
-//   styleUrls: ['./prescription-dialog.component.css']
-// })
-// export class PrescriptionDialogComponent {
-//   cause: string = '';
-//   prescriptions: string[] = [''];
-
-//   constructor(private dialogRef: MatDialogRef<PrescriptionDialogComponent>) {}
-
-//   addPrescription() {
-//     this.prescriptions.push('');
-//   }
-
-//   removePrescription(index: number) {
-//     this.prescriptions.splice(index, 1);
-//   }
-
-//   save() {
-//     // Add save logic here
-//     this.close();
-//   }
-
-//   close() {
-//     this.dialogRef.close();
-//   }
-
-//   isMaximized = false;
-//   isMinimized = false;
-
-//   // Toggle maximize and restore
-//   toggleMaximize() {
-//     console.log('Toggling maximize');
-//     if (this.isMaximized) {
-//       this.restore();
-//     } else {
-//       this.maximize();
-//     }
-//   }
-
-//   // Maximize the window
-//   maximize() {
-//     this.isMaximized = true;
-//     this.isMinimized = false; // Ensure it's not minimized when maximizing
-//   }
-
-//   // Restore the window to normal size
-//   restore() {
-//     this.isMaximized = false;
-//     this.isMinimized = false;
-//   }
-
-//   // Minimize the window
-//   minimize() {
-//     this.isMinimized = true;
-//     this.isMaximized = false; // Ensure it's not maximized when minimizing
-//   }
-
-// }
-
-
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
+import { MatFormFieldModule
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 
 
 @Component({
-  selector: 'app-prescription-dialog',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  selector: 
+ 'app-prescription-dialog',
+ standalone: true,
   templateUrl: './prescription-dialog.component.html',
-  styleUrls: ['./prescription-dialog.component.css'],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    CommonModule
+  ],
+  styleUrls: ['./prescription-dialog.component.css']
 })
-export class PrescriptionDialogComponent {
-  appointmentNotes = {
-    appointmentId: '',
-    symptoms: '',
-    diagnosis: '',
-    additionalDetails: '',
-  };
+export class PrescriptionDialogComponent implements OnInit {
+  prescriptionForm:
+ FormGroup;
 
-  prescriptions = [
-    {
-      medication: '',
-      dosage: '',
-      duration: '',
-      frequency: '',
-    },
-  ];
-
-  addPrescription() {
-    this.prescriptions.push({
-      medication: '',
-      dosage: '',
-      duration: '',
-      frequency: '',
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<PrescriptionDialogComponent>) {
+    this.prescriptionForm = this.fb.group({
+      appointmentId: ['', Validators.required],
+      symptoms: ['', Validators.required],
+      diagnosis: ['', Validators.required],
+      additionalNotes: [''],
+      medication: ['', Validators.required],
+      dosage: ['', Validators.required],
+      duration: ['', Validators.required],
+      frequency: ['', Validators.required],
+      prescriptions: this.fb.array([
+        // this.createPrescriptionFormGroup()
+      ])
     });
+    this.addPrescription(); // Start with one prescription form
   }
 
-  saveForm() {
-    const formData = {
-      appointmentNotes: this.appointmentNotes,
-      prescriptions: this.prescriptions,
-    };
-    console.log('Form Data:', formData);
-    // Save the data or send it to the server
+  // createPrescriptionFormGroup(): FormGroup {
+  //   return this.fb.group({
+  //     medication: ['', Validators.required],
+  //     dosage: ['', Validators.required],
+  //     duration: ['', Validators.required],
+  //     frequency: ['', Validators.required]
+  //   });
+  // }
+
+  get prescriptions(): FormArray {
+    return this.prescriptionForm.get('prescriptions') as FormArray;
   }
+
+
+   // Add a new prescription form group
+   addPrescription() {
+    const prescriptionGroup = this.fb.group({
+      medication: ['', Validators.required],
+      dosage: ['', Validators.required],
+      duration: ['', Validators.required],
+      frequency: ['', Validators.required]
+    });
+    this.prescriptions.push(prescriptionGroup);
+  }
+
+  // Remove a prescription form group
+  removePrescription(index: number) {
+    this.prescriptions.removeAt(index);
+  }
+
+  ngOnInit(): void {
+  }
+
+//   // Submit the form
+//   onSubmit() {
+//     if (this.prescriptionForm.valid) {
+//       console.log('Form Submitted:', this.prescriptionForm.value);
+//       // Add logic to save the data to the server or perform other actions
+//     // } else {
+//     //   alert('Please fill in all required fields.');
+//     // }
+//   }
+// }
+
+
+savePrescription(){
+  const formData = this.prescriptionForm.value;
+  console.log(formData);
+  this.dialogRef.close();
+}
 }
