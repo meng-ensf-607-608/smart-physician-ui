@@ -9,10 +9,10 @@
     <!-- Left Side: Appointments List -->
     <div class="appointments-list">
       <h2>Today's Appointments</h2>
-      <ul *ngIf="patients.length > 0; else noAppointments">
-        <li *ngFor="let patient of patients" (click)="navigateToPatientDetails(patient)">
-          <span>{{ patient.name }}</span>
-          <span>{{ patient.time }}</span>
+      <ul *ngIf="appointments.length > 0; else noAppointments">
+        <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointmentDetails.get(appointment.appointmentId).patient)">
+          <span>{{ appointmentDetails.get(appointment.appointmentId).patient.name }}</span>
+          <span>{{ appointment.startTime + 'Z' | date: 'HH:mm' }}</span>
         </li>
       </ul>
       <!-- Fallback content if there are no appointments -->
@@ -35,7 +35,7 @@
         </div>
         <div class="profile-detail">
           <span class="profile-field">Phone:</span>
-          <span>{{ profile.phone || 'Not Available' }}</span>
+          <span>{{ profile.phoneNumber || 'Not Available' }}</span>
         </div>
         <div class="profile-detail">
           <span class="profile-field">Address:</span>

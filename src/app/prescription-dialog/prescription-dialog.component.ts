@@ -42,14 +42,6 @@ export class PrescriptionDialogComponent implements OnInit {
     this.addPrescription(); // Start with one prescription form
   }
 
-  // createPrescriptionFormGroup(): FormGroup {
-  //   return this.fb.group({
-  //     medication: ['', Validators.required],
-  //     dosage: ['', Validators.required],
-  //     duration: ['', Validators.required],
-  //     frequency: ['', Validators.required]
-  //   });
-  // }
 
   get prescriptions(): FormArray {
     return this.prescriptionForm.get('prescriptions') as FormArray;
@@ -74,17 +66,6 @@ export class PrescriptionDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-//   // Submit the form
-//   onSubmit() {
-//     if (this.prescriptionForm.valid) {
-//       console.log('Form Submitted:', this.prescriptionForm.value);
-//       // Add logic to save the data to the server or perform other actions
-//     // } else {
-//     //   alert('Please fill in all required fields.');
-//     // }
-//   }
-// }
 
 
 savePrescription(){

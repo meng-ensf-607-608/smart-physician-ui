@@ -40,5 +40,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 3. **Run the Application**:
     ```sh
-    docker run -d --name physician-assistant-ui -p 4000:4000 physician-assistant 
+    docker run -d --name physician-assistant-ui -p 4200:4200 physician-assistant 
     `

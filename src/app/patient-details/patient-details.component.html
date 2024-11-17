@@ -6,31 +6,39 @@
     </mat-card-header>
     <mat-card-content>
       <div class="contact-info">
-        <span>{{ patient.email }}</span> | <span>{{ patient.phone }}</span>
+        <span>{{ patient.email }}</span> | <span>{{ patient.phoneNumber }}</span>
       </div>
 
       <div class="patient-details">
         <p><strong>Age:</strong> {{ patient.age }}</p>
         <p><strong>Gender:</strong> {{ patient.gender }}</p>
         <p><strong>Occupation:</strong> {{ patient.occupation }}</p>
-        <p><strong>Chronic Conditions:</strong> {{ patient.chronicCondition }}</p>
+        <p><strong>Chronic Conditions:</strong> {{ patient.chronicConditions }}</p>
       </div>
 
       <!-- Medical History as Table with Last Three Appointments -->
       <mat-card class="medical-history-card">
-        <mat-card-subtitle>Medical History</mat-card-subtitle>
+        <mat-card-subtitle>History</mat-card-subtitle>
         <table mat-table [dataSource]="recentAppointments" class="mat-elevation-z8 history-table">
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <th mat-header-cell *matHeaderCellDef> Appointment Date </th>
             <td mat-cell *matCellDef="let appointment"> {{ appointment.date | date }} </td>
           </ng-container>
-          <ng-container matColumnDef="condition">
-            <th mat-header-cell *matHeaderCellDef> Condition </th>
-            <td mat-cell *matCellDef="let appointment"> {{ appointment.condition }} </td>
+          <ng-container matColumnDef="symptoms">
+            <th mat-header-cell *matHeaderCellDef> Symptoms </th>
+            <td mat-cell *matCellDef="let appointment"> {{ appointment.symptoms }} </td>
           </ng-container>
-          <ng-container matColumnDef="prescription">
-            <th mat-header-cell *matHeaderCellDef> Prescription </th>
-            <td mat-cell *matCellDef="let appointment"> {{ appointment.prescription }} </td>
+          <ng-container matColumnDef="diagnosis">
+            <th mat-header-cell *matHeaderCellDef> Diagnosis </th>
+            <td mat-cell *matCellDef="let appointment"> {{ appointment.diagnosis }} </td>
+          </ng-container>
+          <ng-container matColumnDef="prescriptions">
+            <th mat-header-cell *matHeaderCellDef> Prescriptions </th>
+            <td mat-cell *matCellDef="let appointment">
+              <ul>
+                <li *ngFor="let prescription of appointment.prescriptions">{{prescription}}</li>
+              </ul>
+            </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -40,17 +48,17 @@
       <!-- Symptoms Section -->
       <mat-card class="symptoms-section">
         <mat-card-content>
-          <label for="symptoms-textarea" class="symptoms-label">Enter Symptoms:</label>
-          <textarea id="symptoms-textarea" placeholder="Describe the symptoms..." class="styled-textarea"></textarea>
+          <label for="symptoms-textarea" class="symptoms-label">Get help from AI assistant:</label>
+          <textarea id="symptoms-textarea" #symptomstextarea placeholder="Describe the symptoms... let me help you with the diagnosis" class="styled-textarea"></textarea>
           <div class="button-group">
-            <button mat-raised-button color="primary" (click)="getSuggestions()">Get Suggestions</button>
+            <button mat-raised-button color="primary" (click)="getSuggestions(symptomstextarea.value)">Get Suggestions</button>
             <button mat-raised-button color="primary" (click)="openPrescriptionDialog()">Write Prescription</button>
           </div>
         </mat-card-content>
       </mat-card>
 
       <!-- LLM Suggestions Component -->
-      <app-llm-suggestions *ngIf="showSuggestions"></app-llm-suggestions>
+      <app-llm-suggestions [suggestions]="suggestions" *ngIf="suggestions"></app-llm-suggestions>
     </mat-card-content>
   </mat-card>
 </div>
