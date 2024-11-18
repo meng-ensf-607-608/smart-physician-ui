@@ -6,7 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 
@@ -25,7 +26,7 @@ export class PrescriptionDialogComponent implements OnInit {
   prescriptionForm:
  FormGroup;
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<PrescriptionDialogComponent>) {
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<PrescriptionDialogComponent>, private http: HttpClient) {
     this.prescriptionForm = this.fb.group({
       appointmentId: ['', Validators.required],
       symptoms: ['', Validators.required],
@@ -68,9 +69,26 @@ export class PrescriptionDialogComponent implements OnInit {
   }
 
 
-savePrescription(){
+// savePrescription(){
+//   const formData = this.prescriptionForm.value;
+//   console.log(formData);
+//   this.dialogRef.close();
+// }
+
+savePrescription() {
   const formData = this.prescriptionForm.value;
-  console.log(formData);
-  this.dialogRef.close();
+
+  // Backend API URL
+  const apiUrl = environment.apiUrl + 'v1/appointments/update';
+
+  this.http.post(apiUrl, formData).subscribe({
+    next: (response) => {
+      console.log('Prescription saved successfully:', response);
+      this.dialogRef.close();
+    },
+    error: (error) => {
+      console.error('Error saving prescription:', error);
+    },
+  });
 }
 }
