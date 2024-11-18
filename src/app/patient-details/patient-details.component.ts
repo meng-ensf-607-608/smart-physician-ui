@@ -38,9 +38,11 @@ export class PatientDetailsComponent implements OnInit {
   constructor(private dialog: MatDialog, private llmService: LlmService) {}
 
   openPrescriptionDialog() {
+    const symptoms = (document.getElementById('symptoms-textarea') as HTMLTextAreaElement).value;
     this.dialog.open(PrescriptionDialogComponent, {
       width: '800px',
-      height: '600px'
+      height: '600px',
+      data: {symptoms}
     });
   }
 

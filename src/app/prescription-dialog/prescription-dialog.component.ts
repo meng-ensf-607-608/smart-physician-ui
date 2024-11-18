@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import { MatFormFieldModule
 } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -23,13 +23,12 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./prescription-dialog.component.css']
 })
 export class PrescriptionDialogComponent implements OnInit {
-  prescriptionForm:
- FormGroup;
+  prescriptionForm:FormGroup;
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<PrescriptionDialogComponent>, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<PrescriptionDialogComponent>, private http: HttpClient, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.prescriptionForm = this.fb.group({
       appointmentId: ['', Validators.required],
-      symptoms: ['', Validators.required],
+      symptoms: [data.symptoms, Validators.required],
       diagnosis: ['', Validators.required],
       additionalNotes: [''],
       medication: ['', Validators.required],
@@ -50,7 +49,7 @@ export class PrescriptionDialogComponent implements OnInit {
 
 
    // Add a new prescription form group
-   addPrescription() {
+  addPrescription() {
     const prescriptionGroup = this.fb.group({
       medication: ['', Validators.required],
       dosage: ['', Validators.required],
