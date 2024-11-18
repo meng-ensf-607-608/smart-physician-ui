@@ -1,19 +1,33 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgModule } from '@angular/core';
 import { SignInComponent } from './sign-in.component';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';  // Import HttpClientTestingModule
+import { AuthService } from '../services/auth.service';  // Import AuthService
+import { CommonModule } from '@angular/common';
+
+@NgModule({
+  declarations: [SignInComponent],
+  imports: [CommonModule, provideHttpClientTesting()],
+  providers: [AuthService]
+})
+export class SignInComponentTestingModule {}
+
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
   let fixture: ComponentFixture<SignInComponent>;
+  let httpTestingController: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SignInComponent]
+      imports: [SignInComponentTestingModule],
+      providers: [HttpTestingController]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(SignInComponent);
     component = fixture.componentInstance;
+    httpTestingController = TestBed.inject(HttpTestingController); 
     fixture.detectChanges();
   });
 
