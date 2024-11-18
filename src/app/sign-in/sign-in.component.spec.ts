@@ -4,11 +4,12 @@ import { SignInComponent } from './sign-in.component';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';  // Import HttpClientTestingModule
 import { AuthService } from '../services/auth.service';  // Import AuthService
 import { CommonModule } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
-  declarations: [SignInComponent],
-  imports: [CommonModule, provideHttpClientTesting()],
-  providers: [AuthService]
+  declarations: [],
+  imports: [CommonModule, SignInComponent],
+  providers: [AuthService, provideHttpClient(), provideHttpClientTesting()]
 })
 export class SignInComponentTestingModule {}
 

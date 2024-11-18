@@ -13,8 +13,7 @@ describe('PatientDetailsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [PatientDetailsComponent],
       declarations: [],
-      providers: [provideHttpClient(),
-        provideHttpClientTesting(), LlmService]
+      providers: [provideHttpClient(), provideHttpClientTesting(), LlmService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PatientDetailsComponent);
