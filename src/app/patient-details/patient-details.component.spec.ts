@@ -1,36 +1,32 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { PatientDetailsComponent } from './patient-details.component';
 import { LlmService } from '../services/llm.service';
-import { CommonModule } from '@angular/common'; 
+import { provideHttpClient } from '@angular/common/http';
 
 describe('PatientDetailsComponent', () => {
   let component: PatientDetailsComponent;
-  let service: LlmService;
-  let httpMock: HttpTestingController;
   let fixture: ComponentFixture<PatientDetailsComponent>;
+  let httpMock: HttpTestingController;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [PatientDetailsComponent],
       declarations: [],
-      imports:[PatientDetailsComponent, provideHttpClientTesting(), CommonModule],
-      providers: [
-        LlmService// Use provideHttpClientTesting instead of HttpClientModule
-      ]
+      providers: [provideHttpClient(),
+        provideHttpClientTesting(), LlmService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PatientDetailsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-    service = TestBed.inject(LlmService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  it('should create', () => {
-    const fixture = TestBed.createComponent(PatientDetailsComponent);
-    const component = fixture.componentInstance;
-    expect(component).toBeTruthy();
+  afterEach(() => {
+    httpMock.verify();
   });
 
-  // Add other tests here
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
