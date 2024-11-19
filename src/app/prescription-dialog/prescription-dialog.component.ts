@@ -30,14 +30,10 @@ export class PrescriptionDialogComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private dialogRef: MatDialogRef<PrescriptionDialogComponent>, private http: HttpClient, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.prescriptionForm = this.fb.group({
-      appointmentId: ['', Validators.required],
+      appointmentId: [data.appointmentId, Validators.required],
       symptoms: [data.symptoms, Validators.required],
       diagnosis: ['', Validators.required],
       additionalNotes: [''],
-      medication: ['', Validators.required],
-      dosage: ['', Validators.required],
-      duration: ['', Validators.required],
-      frequency: ['', Validators.required],
       prescriptions: this.fb.array([
         // this.createPrescriptionFormGroup()
       ])
@@ -97,27 +93,7 @@ savePrescription() {
       frequency: prescription.frequency,
     })),
   };
-  // // Backend API URL
-  // const apiUrl = environment.apiUrl + '/v1/appointments/update';
-  // // const authUrl = environment.apiUrl + '/auth/login';
-  // // const token = localStorage.getItem('authToken');
-  // const token = this.authService.getToken();
-  // console.log(token);
-  // // const credentials = {
-  // //   email: 'harneet@ucal.com', // Replace with actual username
-  // //   password: 'demo'  // Replace with actual password
-  // // };
   
-  // // this.http.post(authUrl, credentials).subscribe({
-  // //   next: (authResponse: any) => {
-  // //     const token = authResponse.token; // Adjust based on backend response structure
-  // //     console.log('Token retrieved:', token);
-  
-  // const headers = { 
-  //   Authorization: `Bearer ${token}`,
-  //   'Content-Type': 'application/json', 
-  // };
-      
   console.log('Sending payload:', JSON.stringify(payload, null, 2));
   this.apiService.updateAppointmentDetails(payload).subscribe({
     next: (response) => {
