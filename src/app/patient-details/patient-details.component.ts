@@ -3,7 +3,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { PatientService } from '../services/patient.service';
 import { LlmSuggestionsComponent } from '../llm-suggestions/llm-suggestions.component';
 import { LlmService } from '../services/llm.service';
 import { ApiService } from '../services/api.service';
@@ -22,7 +21,7 @@ export class PatientDetailsComponent implements OnInit {
   symptoms: string = '';
   suggestions: any = null;
 
-  constructor(private patientService: PatientService,private llmService: LlmService,private apiService: ApiService) {}
+  constructor(private llmService: LlmService,private apiService: ApiService) {}
 
   ngOnInit(): void {
     const appointmentDetails = window.history.state.data;

@@ -69,10 +69,5 @@ export class ApiService {
       headers: this.getAuthHeaders()
     });
   }
-
-  getRecentAppointments(patientId: string): Observable<any> {
-        return this.http.get(`${this.apiUrl}/patients/${patientId}/appointments`, { 
-          headers: this.getAuthHeaders() 
-        });
-      }
+  
 }
