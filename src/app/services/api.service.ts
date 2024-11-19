@@ -69,4 +69,10 @@ export class ApiService {
       headers: this.getAuthHeaders()
     });
   }
+  
+  updateAppointmentDetails(appointmentDetailsData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/v1/appointments/update`, appointmentDetailsData, {
+      headers: this.getAuthHeaders()
+    });
+  }
 }
