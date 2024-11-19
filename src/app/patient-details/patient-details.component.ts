@@ -25,7 +25,7 @@ export class PatientDetailsComponent implements OnInit {
   symptoms: string = '';
   suggestions: any = null;
 
-  constructor(private llmService: LlmService,private apiService: ApiService) {}
+  constructor(private dialog: MatDialog, private llmService: LlmService,private apiService: ApiService) {}
 
   ngOnInit(): void {
     const appointmentDetails = window.history.state.data;
@@ -47,9 +47,6 @@ export class PatientDetailsComponent implements OnInit {
     }
   }
 
-  displayedColumns: string[] = ['date', 'symptoms', 'diagnosis', 'prescriptions'];
-
-  constructor(private dialog: MatDialog, private llmService: LlmService) {}
 
   openPrescriptionDialog() {
     const symptoms = (document.getElementById('symptoms-textarea') as HTMLTextAreaElement).value;
