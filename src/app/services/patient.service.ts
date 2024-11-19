@@ -22,7 +22,7 @@ export class PatientService {
     return this.http.get(`${this.apiUrl}/patients/${patientId}`, { headers: this.getHeaders() });
   }
 
-  getRecentAppointments(patientId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/patients/${patientId}/appointments`, { headers: this.getHeaders() });
-  }
+//   getRecentAppointments(patientId: string): Observable<any> {
+//     return this.http.get(`${this.apiUrl}/patients/${patientId}/appointments`, { headers: this.getHeaders() });
+//   }
 }
