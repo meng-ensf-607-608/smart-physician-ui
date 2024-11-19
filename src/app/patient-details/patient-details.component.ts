@@ -25,33 +25,23 @@ export class PatientDetailsComponent implements OnInit {
   constructor(private patientService: PatientService,private llmService: LlmService,private apiService: ApiService) {}
 
   ngOnInit(): void {
-    //const patientId = window.history.state.data?.id || '1'; // Fetch patient ID dynamically or use default for testing
-
-    //this.fetchPatientDetails(patientId);
-    this.patient = window.history.state.data;
-    this.fetchRecentAppointments(this.patient.patientId);
-  }
-
-  // fetchPatientDetails(patientId: string) {
-  //   this.patientService.getPatientDetails(patientId).subscribe({
-  //     next: (data) => {
-  //       this.patient = data;
-  //     },
-  //     error: (error) => {
-  //       console.error('Error fetching patient details:', error);
-  //     }
-  //   });
-  // }
-
-  fetchRecentAppointments(patientId: string) {
-    this.apiService.getRecentAppointments(patientId).subscribe({
-      next: (data) => {
-        this.recentAppointments = data;
-      },
-      error: (error) => {
-        console.error('Error fetching recent appointments:', error);
-      }
-    });
+    const appointmentDetails = window.history.state.data;
+    this.patient = appointmentDetails.patient
+    var appointmentIds: string[] = [];
+    for (let note of appointmentDetails.appointmentNotes) {
+      if(!appointmentIds.includes(note.appointmentId)){
+        var temp: any[] = [];
+        var date: any = null;
+        for (let item of appointmentDetails.prescriptions) {
+          if(item.appointmentId == note.appointmentId){
+            temp.push(`${item.medication} | ${item.dosage} | ${item.duration} | ${item.frequency}`);
+          }
+          date = item.createdAt;
+        }
+        appointmentIds.push(note.appointmentId)
+        this.recentAppointments.push({'date': date, 'note': note, 'prescriptions': temp});
+      };
+    }
   }
 
   getSuggestions(symptoms: string) {

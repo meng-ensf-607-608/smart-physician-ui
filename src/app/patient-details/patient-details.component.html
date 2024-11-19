@@ -27,11 +27,11 @@
           </ng-container>
           <ng-container matColumnDef="symptoms">
             <th mat-header-cell *matHeaderCellDef> Symptoms </th>
-            <td mat-cell *matCellDef="let appointment"> {{ appointment.symptoms }} </td>
+            <td mat-cell *matCellDef="let appointment"> {{ appointment.note.symptoms }} </td>
           </ng-container>
           <ng-container matColumnDef="diagnosis">
             <th mat-header-cell *matHeaderCellDef> Diagnosis </th>
-            <td mat-cell *matCellDef="let appointment"> {{ appointment.diagnosis }} </td>
+            <td mat-cell *matCellDef="let appointment"> {{ appointment.note.diagnosis }} </td>
           </ng-container>
           <ng-container matColumnDef="prescriptions">
             <th mat-header-cell *matHeaderCellDef> Prescriptions </th>
