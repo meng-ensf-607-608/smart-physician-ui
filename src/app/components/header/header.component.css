@@ -23,3 +23,20 @@
     margin: 0;
   }
   
+  .logout-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    padding: 8px 16px;
+    background-color: #f4f5ef;
+    color: rgb(1, 33, 16);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 50px;
+  }
+  
+  .logout-button:hover {
+    background-color: #555;
+    color: rgb(234, 255, 3);
+  }
