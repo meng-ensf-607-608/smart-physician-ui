@@ -6,8 +6,11 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { AuthService } from '../services/auth.service';
+import { response } from 'express';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 
@@ -25,7 +28,7 @@ import { environment } from '../../environments/environment';
 export class PrescriptionDialogComponent implements OnInit {
   prescriptionForm:FormGroup;
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<PrescriptionDialogComponent>, private http: HttpClient, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private dialogRef: MatDialogRef<PrescriptionDialogComponent>, private http: HttpClient, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.prescriptionForm = this.fb.group({
       appointmentId: ['', Validators.required],
       symptoms: [data.symptoms, Validators.required],
@@ -76,18 +79,59 @@ export class PrescriptionDialogComponent implements OnInit {
 
 savePrescription() {
   const formData = this.prescriptionForm.value;
-
-  // Backend API URL
-  const apiUrl = environment.apiUrl + 'v1/appointments/update';
-
-  this.http.post(apiUrl, formData).subscribe({
+  const payload = {
+    appointmentNotes: [
+      {
+        appointmentId: formData.appointmentId,
+        symptoms: formData.symptoms,
+        diagnosis: formData.diagnosis,
+        additionalInstructions: formData.additionalNotes,
+      },
+    ],
+    prescriptions: formData.prescriptions.map((prescription: any) => ({
+      appointmentId: formData.appointmentId,
+      createdAt: new Date().toISOString(), // Set the current date and time
+      medication: prescription.medication,
+      dosage: prescription.dosage,
+      duration: prescription.duration,
+      frequency: prescription.frequency,
+    })),
+  };
+  // // Backend API URL
+  // const apiUrl = environment.apiUrl + '/v1/appointments/update';
+  // // const authUrl = environment.apiUrl + '/auth/login';
+  // // const token = localStorage.getItem('authToken');
+  // const token = this.authService.getToken();
+  // console.log(token);
+  // // const credentials = {
+  // //   email: 'harneet@ucal.com', // Replace with actual username
+  // //   password: 'demo'  // Replace with actual password
+  // // };
+  
+  // // this.http.post(authUrl, credentials).subscribe({
+  // //   next: (authResponse: any) => {
+  // //     const token = authResponse.token; // Adjust based on backend response structure
+  // //     console.log('Token retrieved:', token);
+  
+  // const headers = { 
+  //   Authorization: `Bearer ${token}`,
+  //   'Content-Type': 'application/json', 
+  // };
+      
+  console.log('Sending payload:', JSON.stringify(payload, null, 2));
+  this.apiService.updateAppointmentDetails(payload).subscribe({
     next: (response) => {
-      console.log('Prescription saved successfully:', response);
-      this.dialogRef.close();
+      console.log('Success:', response);
+      this.dialogRef.close(response); // Close the dialog and return the response
+      
     },
     error: (error) => {
       console.error('Error saving prescription:', error);
+      alert(`Error: ${error.message}`);
     },
   });
 }
+// });
 }
+
+
