@@ -1,0 +1,45 @@
+<div class="appointments-page">
+  <h2>Welcome, {{ profile?.name || 'Physician' }}</h2>
+  <p>{{ currentDate }}</p>
+
+  <!-- Main Content Divided into Two Sides -->
+  <div class="appointments-container">
+    <!-- Left Side: Appointments List -->
+    <div class="appointments-list">
+      <h2>Today's Appointments</h2>
+      <ul *ngIf="appointments.length > 0; else noAppointments">
+        <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointmentDetails.get(appointment.appointmentId).patient)">
+          <span>{{ appointmentDetails.get(appointment.appointmentId).patient.name }}</span>
+          <span>{{ appointment.startTime + 'Z' | date: 'HH:mm' }}</span>
+        </li>
+      </ul>
+      <!-- Fallback content if there are no appointments -->
+      <ng-template #noAppointments>
+        <p>No appointments scheduled for today.</p>
+      </ng-template>
+    </div>
+
+    <!-- Right Side: Profile Section -->
+    <div class="profile-section" *ngIf="profile">
+      <!-- Edit Button in Top Right Corner of Profile Section -->
+      <button class="edit-button" style="display: none;">Edit</button>
+      <h2>{{ profile.name || 'Physician' }}'s Profile</h2>
+      
+      <!-- Profile details container with individual fields -->
+      <div class="profile-details">
+        <div class="profile-detail">
+          <span class="profile-field">Email:</span>
+          <span>{{ profile.email || 'Not Available' }}</span>
+        </div>
+        <div class="profile-detail">
+          <span class="profile-field">Phone:</span>
+          <span>{{ profile.phoneNumber || 'Not Available' }}</span>
+        </div>
+        <div class="profile-detail">
+          <span class="profile-field">Address:</span>
+          <span>{{ profile.address || 'Not Available' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

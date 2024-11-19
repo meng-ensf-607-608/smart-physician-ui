@@ -1,0 +1,167 @@
+/* Main page styling */
+.patient-details-page {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f6f8; /* Light background for contrast */
+}
+
+/* Card for patient details */
+.patient-card {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* Header and title styling */
+.patient-card mat-card-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: #3f51b5; /* Primary color for emphasis */
+  text-align: center;
+}
+
+.patient-card mat-card-subtitle {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #3f51b5;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.mat-mdc-card-header {
+  display: initial;
+  padding: 16px 16px 0;
+}
+
+/* Contact information styling */
+.contact-info {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: #666666;
+}
+
+/* Patient details section styling */
+.patient-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 1em;
+  color: #333333;
+}
+
+.patient-details p {
+  margin: 0;
+  width: 45%; /* Adjust width as needed */
+}
+
+/* Medical history section styling */
+.medical-history-card {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.history-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.history-table th, .history-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  font-size: 0.95em;
+}
+
+.history-table th {
+  font-weight: bold;
+  color: #3f51b5; /* Primary color for table headers */
+  background-color: #f1f3f4; /* Light background for headers */
+}
+
+.history-table td {
+  color: #555555;
+}
+
+/* Symptoms section styling */
+.symptoms-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Text area styling */
+.symptoms-label {
+  font-size: 1.1em;
+  color: #3f51b5;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.styled-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.styled-textarea:focus {
+  border-color: #3f51b5;
+  box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1), 0 0 5px rgba(63, 81, 181, 0.2);
+  outline: none;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Button styling */
+.mat-raised-button {
+  min-width: 160px;
+  padding: 10px;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px;
+}
+
+.mat-raised-button:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.styled-button.primary {
+  background-color: #3f51b5; /* Primary color */
+}
+
+.styled-button.primary:hover {
+  background-color: #36489a;
+}
+
+/* LLM Suggestions component placeholder */
+app-llm-suggestions {
+  display: block;
+  margin-top: 20px;
+}

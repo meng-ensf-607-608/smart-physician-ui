@@ -1,0 +1,42 @@
+.header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white; /* Optional: Background color for the header */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for header */
+    z-index: 1000; /* Keeps header on top of other content */
+  }
+  
+  .logo {
+    width: 40px; /* Adjust the width as needed */
+    height: auto;
+    margin-right: 0.5rem;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    color: #2e7d32; /* Matching the green tone in the logo */
+    margin: 0;
+  }
+  
+  .logout-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    padding: 8px 16px;
+    background-color: #f4f5ef;
+    color: rgb(1, 33, 16);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 50px;
+  }
+  
+  .logout-button:hover {
+    background-color: #555;
+    color: rgb(234, 255, 3);
+  }
