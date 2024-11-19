@@ -2,19 +2,18 @@
   <!-- Main Card for Patient Details -->
   <mat-card class="patient-card">
     <mat-card-header>
-      <mat-card-title>{{ patient?.name || 'Loading...' }}</mat-card-title>
+      <mat-card-title>{{ patient?.name }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="contact-info">
-        <span>{{ patient?.email || 'Loading...' }}</span> | 
-        <span>{{ patient?.phoneNumber || 'Loading...' }}</span>
+      <div class="contact-info" style="margin-top: 20px;">
+        <span>{{ patient?.email }}</span> | <span>{{ patient?.phoneNumber }}</span>
       </div>
 
       <div class="patient-details">
-        <p><strong>Age:</strong> {{ patient?.age || 'Loading...' }}</p>
-        <p><strong>Gender:</strong> {{ patient?.gender || 'Loading...' }}</p>
-        <p><strong>Occupation:</strong> {{ patient?.occupation || 'Loading...' }}</p>
-        <p><strong>Chronic Conditions:</strong> {{ patient?.chronicConditions || 'Loading...' }}</p>
+        <p><strong>Age:</strong> {{ patient?.age }}</p>
+        <p><strong>Gender:</strong> {{ patient?.gender }}</p>
+        <p><strong>Occupation:</strong> {{ patient?.occupation }}</p>
+        <p><strong>Chronic Conditions:</strong> {{ patient?.chronicConditions }}</p>
       </div>
 
       <!-- Medical History as Table with Last Three Appointments -->
