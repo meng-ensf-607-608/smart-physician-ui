@@ -64,11 +64,6 @@ export class AppointmentsComponent implements OnInit {
   navigateToPatientDetails(appointmentDetails: any) {
     this.router.navigate(['/patient-details'], { state: {data: appointmentDetails} });
   }
-
-  logOut() {
-    console.log("Logging out...");
-    this.router.navigate(['/']);
-  }
   
 }
 
