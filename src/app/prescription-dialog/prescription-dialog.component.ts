@@ -97,7 +97,6 @@ savePrescription() {
       frequency: prescription.frequency,
     })),
   };
-
   console.log('Sending payload:', JSON.stringify(payload, null, 2));
   this.apiService.updateAppointmentDetails(payload).subscribe({
     next: (response) => {
