@@ -31,7 +31,6 @@ export class PatientDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.thisAppointmentId = window.history.state.appointmentId;
-    console.log(window.history.state)
     const appointmentDetails = window.history.state.data;
     this.patient = appointmentDetails.patient
     var appointmentIds: string[] = [];
