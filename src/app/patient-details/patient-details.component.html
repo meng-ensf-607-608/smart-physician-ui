@@ -3,10 +3,10 @@
   <!-- Main Card for Patient Details -->
   <mat-card class="patient-card">
     <nav class="breadcrumb-container">
-      <span class="breadcrumb" (click)="navigateToAppointments()">Appointments</span> &gt; 
-      <span class="breadcrumb-current">Patient Details</span>
+      <span class="breadcrumb" (click)="navigateToAppointments()">Physician Home</span> &gt; 
+      <span class="breadcrumb-current">Appointment Details</span>
     </nav>
-    <mat-card-header>
+    <!-- <mat-card-header>
       <mat-card-title>{{ patient?.name }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -20,14 +20,42 @@
         <p><strong>Gender:</strong> {{ patient?.gender }}</p>
         <p><strong>Occupation:</strong> {{ patient?.occupation }}</p>
         <p><strong>Chronic Conditions:</strong> {{ patient?.chronicConditions }}</p>
-      </div>
+      </div> -->
+    <mat-card-content>
+      <mat-card class="main-card">
+        <mat-card-subtitle class="main-card-subtitle">Patient Details</mat-card-subtitle>
+        <div class="patient-page-card">
+          <mat-card class="left-card">
+            <mat-card-header>
+              <mat-card-title>{{ patient?.name || 'Loading...' }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="contact-info" style="padding-top: 20px;">
+                <span style="display: block;">{{ patient?.email || 'Loading...' }}</span>
+                <span style="display: block;">{{ patient?.phoneNumber || 'Loading...' }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+      
+          <mat-card class="right-card">
+            <mat-card-content>
+              <div class="patient-details">
+                <p><strong>Age:</strong> {{ patient?.age }}</p>
+                <p><strong>Gender:</strong> {{ patient?.gender }}</p>
+                <p><strong>Occupation:</strong> {{ patient?.occupation }}</p>
+                <p><strong>Chronic Conditions:</strong> {{ patient?.chronicConditions }}</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-card>
 
       <!-- Medical History as Table with Last Three Appointments -->
       <mat-card class="medical-history-card">
-        <mat-card-subtitle>History</mat-card-subtitle>
+        <mat-card-subtitle>Appointment History</mat-card-subtitle>
         <table mat-table [dataSource]="recentAppointments" class="mat-elevation-z8 history-table">
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef> Appointment Date </th>
+            <th mat-header-cell *matHeaderCellDef> Date </th>
             <td mat-cell *matCellDef="let appointment"> {{ appointment.date | date }} </td>
           </ng-container>
           <ng-container matColumnDef="symptoms">
