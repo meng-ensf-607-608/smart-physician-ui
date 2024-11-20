@@ -24,11 +24,14 @@ export class PatientDetailsComponent implements OnInit {
   recentAppointments: any[] = [];
   displayedColumns: string[] = ['date', 'symptoms', 'diagnosis', 'prescriptions'];
   symptoms: string = '';
+  thisAppointmentId: string = '';
   suggestions: any = null;
 
   constructor(private router:Router, private dialog: MatDialog, private llmService: LlmService,private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.thisAppointmentId = window.history.state.appointmentId;
+    console.log(window.history.state)
     const appointmentDetails = window.history.state.data;
     this.patient = appointmentDetails.patient
     var appointmentIds: string[] = [];
@@ -51,10 +54,11 @@ export class PatientDetailsComponent implements OnInit {
 
   openPrescriptionDialog() {
     const symptoms = (document.getElementById('symptoms-textarea') as HTMLTextAreaElement).value;
+    const appointmentId = this.thisAppointmentId;
     this.dialog.open(PrescriptionDialogComponent, {
       width: '800px',
       height: '600px',
-      data: {symptoms}
+      data: {symptoms, appointmentId}
     });
   }
 
