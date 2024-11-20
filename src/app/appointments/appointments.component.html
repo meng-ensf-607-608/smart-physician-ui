@@ -10,7 +10,13 @@
       <h2>Upcoming Appointments</h2>
       <ul *ngIf="appointments.length > 0; else noAppointments">
         <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointmentDetails.get(appointment.appointmentId), appointment.appointmentId)">
-          <span>{{ appointmentDetails.get(appointment.appointmentId).patient.name }}</span>
+          <!-- <span>{{ appointmentDetails.get(appointment.appointmentId).patient?.name }}</span> -->
+          <ng-container *ngIf="appointmentDetails.get(appointment.appointmentId)?.patient">
+            {{ appointmentDetails.get(appointment.appointmentId)?.patient?.name }}
+          </ng-container>
+          <ng-container *ngIf="!appointmentDetails.get(appointment.appointmentId)?.patient">
+            Patient information not available.
+          </ng-container>
           <span>{{ appointment.startTime + 'Z' | date: 'YYYY-MM-dd HH:mm' }}</span>
         </li>
       </ul>

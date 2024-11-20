@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-appointments',
   standalone: true,
-  imports: [CommonModule, ProfileComponent, MatCardModule],
+  imports: [CommonModule, MatCardModule],
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.css']
 })
@@ -37,7 +37,15 @@ export class AppointmentsComponent implements OnInit {
         for (let appointment of this.appointments) {
           this.appointmentsService.getAllAppointmentDetails(appointment.appointmentId).subscribe({
             next: (data) => {
-              this.appointmentDetails.set(appointment.appointmentId, data)
+              const patient = data.patient || null;
+              const appointmentNotes = data.appointmentNotes || null;
+              const prescriptions = data.prescriptions || null;
+              
+              this.appointmentDetails.set(appointment.appointmentId, {
+                patient: patient,
+                appointmentNotes: appointmentNotes,
+                prescriptions: prescriptions,
+              });
             },
             error: (error) => {
               console.error('Error fetching appointment details:', error);

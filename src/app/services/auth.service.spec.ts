@@ -6,6 +6,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Injectable, Inject } from '@angular/core';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -18,7 +19,7 @@ describe('AuthService', () => {
       providers: [provideHttpClientTesting(), provideHttpClient(withInterceptors([])),
       { 
         provide: AuthService,
-        useFactory: (http: HttpClient) => new AuthService(http), // Inject mockApiUrl into AuthService
+        useFactory: (http: HttpClient, router: Router) => new AuthService(http, router), // Inject mockApiUrl into AuthService
         deps: [HttpClient],
         mockApiUrl,
       },
