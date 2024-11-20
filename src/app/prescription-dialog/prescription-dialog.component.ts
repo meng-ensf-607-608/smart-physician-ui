@@ -75,6 +75,8 @@ export class PrescriptionDialogComponent implements OnInit {
 
 savePrescription() {
   const formData = this.prescriptionForm.value;
+  console.log(formData)
+  console.log('Prescriptions Array:', this.prescriptions.value);
   const payload = {
     appointmentNotes: [
       {
@@ -84,7 +86,7 @@ savePrescription() {
         additionalInstructions: formData.additionalNotes,
       },
     ],
-    prescriptions: formData.prescriptions.map((prescription: any) => ({
+    prescriptions: this.prescriptions.value.map((prescription: any) => ({
       appointmentId: formData.appointmentId,
       createdAt: new Date().toISOString(), // Set the current date and time
       medication: prescription.medication,
@@ -107,7 +109,10 @@ savePrescription() {
     },
   });
 }
-// });
+closeDialog(): void {
+  this.dialogRef.close(); // This assumes you're using Angular Material dialog
+}
+
 }
 
 
