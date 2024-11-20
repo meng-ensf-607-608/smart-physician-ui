@@ -15,7 +15,6 @@ export class AppointmentsService {
 
   private getHeaders(): HttpHeaders {
     const token = this.authService.getToken();
-    console.log(`Bearer ${this.authService.getToken()}`)
     return new HttpHeaders({
       Authorization: `Bearer ${token}`
     });

@@ -29,7 +29,6 @@ export class SignInComponent {
     if (this.signInForm.invalid) return;
 
     const { email, password } = this.signInForm.value;
-    console.log(email)
 
     this.authService.login(email, password).subscribe(
       (response) => {
