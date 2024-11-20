@@ -1,14 +1,41 @@
 /* Main page styling */
 .patient-details-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   background-color: #f4f6f8; /* Light background for contrast */
+  gap: 20px; /* Add spacing between sections */
+}
+
+/* Breadcrumb navigation */
+.breadcrumb-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #3f51b5; /* Primary color for breadcrumbs */
+}
+
+.breadcrumb {
+  text-decoration: underline;
+  color: #3f51b5;
+  cursor: pointer;
+}
+
+.breadcrumb:hover {
+  text-decoration: none;
+}
+
+.breadcrumb-current {
+  font-weight: bold;
+  color: #555555; /* Neutral color for the current page */
 }
 
 /* Card for patient details */
 .patient-card {
-  max-width: 800px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   padding: 20px;
@@ -19,14 +46,14 @@
 
 /* Header and title styling */
 .patient-card mat-card-title {
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: bold;
   color: #3f51b5; /* Primary color for emphasis */
   text-align: center;
 }
 
 .patient-card mat-card-subtitle {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #3f51b5;
   margin-bottom: 15px;
@@ -42,7 +69,7 @@
 .contact-info {
   display: flex;
   justify-content: center;
-  font-size: 1.1em;
+  font-size: 1.1rem;
   margin-bottom: 20px;
   color: #666666;
 }
@@ -51,21 +78,21 @@
 .patient-details {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   margin-bottom: 20px;
-  font-size: 1em;
+  font-size: 1rem;
   color: #333333;
 }
 
 .patient-details p {
   margin: 0;
-  width: 45%; /* Adjust width as needed */
+  flex: 1 1 calc(50% - 20px); /* Adjust width for responsiveness */
 }
 
 /* Medical history section styling */
 .medical-history-card {
   margin-top: 20px;
-  padding: 15px;
+  padding: 20px;
   background-color: #f9fafb;
   border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
@@ -81,7 +108,7 @@
   padding: 12px 8px;
   border-bottom: 1px solid #e0e0e0;
   text-align: left;
-  font-size: 0.95em;
+  font-size: 1rem;
 }
 
 .history-table th {
@@ -98,25 +125,27 @@
 .symptoms-section {
   margin-top: 20px;
   padding: 20px;
-  background-color: #f9fafb;
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Slightly prominent shadow for emphasis */
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* Text area styling */
 .symptoms-label {
-  font-size: 1.1em;
+  font-size: 1.2rem;
   color: #3f51b5;
-  font-weight: 500;
-  margin-bottom: 8px;
+  font-weight: bold;
+  margin-bottom: 10px;
   display: block;
 }
 
 .styled-textarea {
   width: 100%;
-  min-height: 80px;
-  padding: 12px;
-  font-size: 1em;
+  min-height: 100px;
+  padding: 10px;
+  font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 6px;
   box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -134,34 +163,50 @@
 /* Button group styling */
 .button-group {
   display: flex;
-  gap: 15px;
+  justify-content: center;
+  gap: 20px;
   margin-top: 15px;
 }
 
 /* Button styling */
 .mat-raised-button {
-  min-width: 160px;
+  min-width: 180px;
   padding: 10px;
-  font-size: 1em;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: bold;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .mat-raised-button:hover {
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.styled-button.primary {
+.mat-raised-button.primary {
   background-color: #3f51b5; /* Primary color */
+  color: #ffffff;
 }
 
-.styled-button.primary:hover {
+.mat-raised-button.primary:hover {
   background-color: #36489a;
 }
 
-/* LLM Suggestions component placeholder */
-app-llm-suggestions {
-  display: block;
-  margin-top: 20px;
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .patient-details-page {
+    padding: 10px;
+  }
+
+  .patient-card {
+    max-width: 100%;
+  }
+
+  .patient-details p {
+    flex: 1 1 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

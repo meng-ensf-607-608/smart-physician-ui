@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
@@ -25,7 +26,7 @@ export class PatientDetailsComponent implements OnInit {
   symptoms: string = '';
   suggestions: any = null;
 
-  constructor(private dialog: MatDialog, private llmService: LlmService,private apiService: ApiService) {}
+  constructor(private router:Router, private dialog: MatDialog, private llmService: LlmService,private apiService: ApiService) {}
 
   ngOnInit(): void {
     const appointmentDetails = window.history.state.data;
@@ -74,5 +75,9 @@ export class PatientDetailsComponent implements OnInit {
         console.error('Error fetching suggestions from LLM', error);
       }
     });
+  }
+
+  navigateToAppointments() {
+    this.router.navigate(['/appointments']);
   }
 }
