@@ -67,6 +67,18 @@ savePrescription() {
   const formData = this.prescriptionForm.value;
   console.log(formData)
   console.log('Prescriptions Array:', this.prescriptions.value);
+  const validPrescriptions = this.prescriptions.value.filter((prescription: any) => {
+    return (
+      prescription.medication &&
+      prescription.dosage &&
+      prescription.frequency
+    );
+  });
+
+  if (validPrescriptions.length === 0) {
+    alert('Please fill all required fields');
+    return; // Stop further processing if no valid prescriptions
+  }
   const payload = {
     appointmentNotes: [
       {
@@ -85,13 +97,12 @@ savePrescription() {
       frequency: prescription.frequency,
     })),
   };
-  
+
   console.log('Sending payload:', JSON.stringify(payload, null, 2));
   this.apiService.updateAppointmentDetails(payload).subscribe({
     next: (response) => {
       console.log('Success:', response);
       this.dialogRef.close(response); // Close the dialog and return the response
-      
     },
     error: (error) => {
       console.error('Error saving prescription:', error);
