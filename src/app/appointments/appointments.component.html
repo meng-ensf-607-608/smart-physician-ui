@@ -7,11 +7,11 @@
   <div class="appointments-container">
     <!-- Left Side: Appointments List -->
     <mat-card class="appointments-list">
-      <h2>Today's Appointments</h2>
+      <h2>Upcoming Appointments</h2>
       <ul *ngIf="appointments.length > 0; else noAppointments">
         <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointmentDetails.get(appointment.appointmentId), appointment.appointmentId)">
           <span>{{ appointmentDetails.get(appointment.appointmentId).patient.name }}</span>
-          <span>{{ appointment.startTime + 'Z' | date: 'HH:mm' }}</span>
+          <span>{{ appointment.startTime + 'Z' | date: 'YYYY-MM-dd HH:mm' }}</span>
         </li>
       </ul>
       <!-- Fallback content if there are no appointments -->

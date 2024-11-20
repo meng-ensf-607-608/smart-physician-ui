@@ -32,7 +32,7 @@ export class AppointmentsComponent implements OnInit {
     this.appointmentsService.getAllAppointments().subscribe({
       next: (data) => {
         for (let appointment of data) {
-          if(isToday(appointment.startTime)) {this.appointments.push(appointment)};
+          this.appointments.push(appointment);
         }
         for (let appointment of this.appointments) {
           this.appointmentsService.getAllAppointmentDetails(appointment.appointmentId).subscribe({
