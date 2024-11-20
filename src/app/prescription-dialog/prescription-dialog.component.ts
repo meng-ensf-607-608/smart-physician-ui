@@ -7,9 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { AuthService } from '../services/auth.service';
-import { response } from 'express';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -66,13 +63,6 @@ export class PrescriptionDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-// savePrescription(){
-//   const formData = this.prescriptionForm.value;
-//   console.log(formData);
-//   this.dialogRef.close();
-// }
-
 savePrescription() {
   const formData = this.prescriptionForm.value;
   console.log(formData)
@@ -110,9 +100,6 @@ savePrescription() {
   });
 }
 closeDialog(): void {
-  this.dialogRef.close(); // This assumes you're using Angular Material dialog
+  this.dialogRef.close();
 }
-
 }
-
-
