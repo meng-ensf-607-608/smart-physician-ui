@@ -140,6 +140,10 @@ p {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+.appointments-card{
+  background-color: #ffffff;
+}
+
 /* Responsive design adjustments for the profile section */
 @media (max-width: 768px) {
   .profile-section {

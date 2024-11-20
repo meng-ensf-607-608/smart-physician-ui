@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { AppointmentsService } from '../services/appointments.service';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from '../profile/profile.component';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-appointments',
   standalone: true,
-  imports: [CommonModule, ProfileComponent],
+  imports: [CommonModule, ProfileComponent, MatCardModule],
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.css']
 })
