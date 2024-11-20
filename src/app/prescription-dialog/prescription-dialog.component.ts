@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 
 @Component({
   selector: 
@@ -18,7 +19,11 @@ import { ApiService } from '../services/api.service';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatCard,
+    MatCardContent,
+    MatCardHeader,
+    MatCardTitle
   ],
   styleUrls: ['./prescription-dialog.component.css']
 })

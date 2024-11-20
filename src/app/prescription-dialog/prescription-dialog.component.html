@@ -1,71 +1,73 @@
-<h2 class="title">Prescription Details</h2>
-<div class="dialog-container">
-<form [formGroup]="prescriptionForm">
-  <div class="section">
-    <h4>Appointment Notes</h4>
-    <!-- <div class="form-group">
-      <label for="appointmentId">Appointment ID*</label>
-      <input type="text" id="appointmentId" formControlName="appointmentId" required>
-    </div> -->
+<div class = "popupPrescription"  >
+  <h2 class="title">Prescription Details</h2>
+  <div class="dialog-container">
+    <form [formGroup]="prescriptionForm">
+      <mat-card class="appointment-notes-card">
+        <mat-card-header>
+          <mat-card-title>Appointment Notes</mat-card-title>
+        </mat-card-header>
+      <mat-card-content>
+        
+            <div class="form-group">
+              <label for="symptoms">Symptoms*</label>
+              <textarea id="symptoms" formControlName="symptoms" required></textarea>
+            </div>
 
-    <div class="form-group">
-      <label for="symptoms">Symptoms*</label>
-      <textarea id="symptoms" formControlName="symptoms" required></textarea>
-    </div>
+            <div class="form-group">
+              <label for="diagnosis">Diagnosis*</label>
+              <textarea id="diagnosis" formControlName="diagnosis" required></textarea>
+            </div>
+      </mat-card-content>
+      </mat-card>
 
-    <div class="form-group">
-      <label for="diagnosis">Diagnosis*</label>
-      <textarea id="diagnosis" formControlName="diagnosis" required></textarea>
-    </div>
-
-    <!-- <div class="form-group">
-      <label for="additionalNotes">Additional Notes</label>
-      <textarea id="additionalNotes" formControlName="additionalNotes"></textarea>
-    </div> -->
+      <mat-card class="prescription-card">
+        <mat-card-header>
+          <mat-card-title>Prescription</mat-card-title>
+        </mat-card-header>
+      <mat-card-content>
+        <div formArrayName="prescriptions">
+            <div *ngFor="let prescription of prescriptions.controls; let i = index" [formGroupName]="i">
+              <h4>Prescription {{ i + 1 }}</h4>
+                <div class="form-group">
+                  <label for="medication-{{ i }}">Medication*</label>
+                  <input type="text" id="medication-{{ i }}" formControlName="medication" required />
+                  <div *ngIf="prescription.get('medication')?.invalid && prescription.get('medication')?.touched">
+                    Medication is required.
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label for="dosage-{{ i }}">Dosage*</label>
+                  <input type="text" id="dosage-{{ i }}" formControlName="dosage" required />
+                  <div *ngIf="prescription.get('dosage')?.invalid && prescription.get('dosage')?.touched">
+                    Dosage is required.
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label for="duration-{{ i }}">Duration*</label>
+                  <input type="text" id="duration-{{ i }}" formControlName="duration" required />
+                  <div *ngIf="prescription.get('duration')?.invalid && prescription.get('duration')?.touched">
+                    Duration is required.
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label for="frequency-{{ i }}">Frequency*</label>
+                  <input type="text" id="frequency-{{ i }}" formControlName="frequency" required />
+                  <div *ngIf="prescription.get('frequency')?.invalid && prescription.get('frequency')?.touched">
+                    Frequency is required.
+                  </div>
+                </div>
+                <button type="button" (click)="addPrescription()">Add</button>
+                <button type="button" (click)="removePrescription(i)">Remove</button>
+            </div>
+        </div>
+      </mat-card-content>
+      </mat-card>
+      <button type="button"(click)="savePrescription()">Save</button>
+      <button type="button"(click)="closeDialog()">close</button>
+    </form>
   </div>
 
-  <div class="section">
-    <h4>Prescription</h4>
-    <div formArrayName="prescriptions">
-    <div *ngFor="let prescription of prescriptions.controls; let i = index" [formGroupName]="i">
-        <h4>Prescription {{ i + 1 }}</h4>
-        <div class="form-group">
-          <label for="medication-{{ i }}">Medication*</label>
-          <input type="text" id="medication-{{ i }}" formControlName="medication" required />
-          <div *ngIf="prescription.get('medication')?.invalid && prescription.get('medication')?.touched">
-            Medication is required.
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="dosage-{{ i }}">Dosage*</label>
-          <input type="text" id="dosage-{{ i }}" formControlName="dosage" required />
-          <div *ngIf="prescription.get('dosage')?.invalid && prescription.get('dosage')?.touched">
-            Dosage is required.
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="duration-{{ i }}">Duration*</label>
-          <input type="text" id="duration-{{ i }}" formControlName="duration" required />
-          <div *ngIf="prescription.get('duration')?.invalid && prescription.get('duration')?.touched">
-            Duration is required.
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="frequency-{{ i }}">Frequency*</label>
-          <input type="text" id="frequency-{{ i }}" formControlName="frequency" required />
-          <div *ngIf="prescription.get('frequency')?.invalid && prescription.get('frequency')?.touched">
-            Frequency is required.
-          </div>
-        </div>
-        <button type="button" (click)="addPrescription()">Add</button>
-        <button type="button" (click)="removePrescription(i)">Remove</button>
-      </div>
-    </div>
-  </div>
-<button type="button"(click)="savePrescription()">Save</button>
-<button type="button"(click)="closeDialog()">close</button>
-  </form>
-</div>
+

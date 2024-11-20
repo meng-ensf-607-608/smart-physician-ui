@@ -1,3 +1,7 @@
+.popupPrescription {
+  padding-bottom: 30px;
+}
+
 .title {
     text-align: center;
     margin-bottom: 20px;
@@ -94,4 +98,135 @@ input[type="text"] {
   border: 1px solid #ccc; /* Light gray border */
   border-radius: 0; /* Rectangular shape */
   font-size: 14px; /* Readable font size */
+}
+
+/* General Styling for the Prescription Card */
+.prescription-card {
+  margin: 16px 0;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling for the Mat-Card Title */
+.prescription-card mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Styling for Each Prescription Item */
+.prescription-item {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Group Styling */
+.prescription-item .form-group {
+  margin-bottom: 12px;
+}
+
+/* Button Group Styling */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Styling for Input Fields */
+.prescription-item input[type="text"],
+.prescription-item textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Input Validation Error */
+.prescription-item div[ng-reflect-ng-if] {
+  color: #f44336; /* Red color for error messages */
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .prescription-card {
+    padding: 12px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button-group button {
+    width: 100%;
+  }
+}
+
+
+/* Styling for the Appointment Notes Card */
+.appointment-notes-card {
+  margin: 16px 0;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling for the Mat-Card Title */
+.appointment-notes-card mat-card-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight:bold;
+}
+
+/* Styling for Form Groups */
+.appointment-notes-card .form-group {
+  margin-bottom: 16px;
+}
+
+/* Styling for Input Fields */
+.appointment-notes-card textarea {
+   /* Allow vertical resizing only */
+
+
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Error Styling for Input Validation */
+.appointment-notes-card .form-group textarea:invalid {
+  border-color: #adabab; /* Red border for invalid inputs */
+}
+
+.appointment-notes-card label {
+  font-size: 16px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .appointment-notes-card {
+    padding: 12px;
+  }
+
+  .appointment-notes-card textarea {
+    font-size: 13px;
+  }
 }
