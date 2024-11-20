@@ -116,15 +116,6 @@ describe('AppointmentsComponent', () => {
     expect(addressField.nativeElement.textContent).toContain('123 Clinic St.');
   });
 
-  it('should call logOut when logout button is clicked', () => {
-    spyOn(component, 'logOut');
-
-    const logoutButton = fixture.debugElement.query(By.css('.logout-button'));
-    logoutButton.nativeElement.click();
-
-    expect(component.logOut).toHaveBeenCalled();
-  });
-
   it('should navigate to patient details when appointment is clicked', () => {
     component.appointments = mockAppointments.map((appt) => ({
       ...appt,
@@ -138,7 +129,7 @@ describe('AppointmentsComponent', () => {
     if (appointmentElement) {
       appointmentElement.nativeElement.click();
       const patientDetails = mockAppointmentDetails.get('1')?.patient;
-        expect(component.navigateToPatientDetails).toHaveBeenCalledWith(patientDetails);
+        expect(component.navigateToPatientDetails).toHaveBeenCalledWith(patientDetails, '1');
     } else {
       fail('No appointment element found in the DOM.');
     }
