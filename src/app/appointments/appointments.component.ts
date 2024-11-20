@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-appointments',
   standalone: true,
-  imports: [CommonModule, ProfileComponent, MatCardModule],
+  imports: [CommonModule, MatCardModule],
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.css']
 })
