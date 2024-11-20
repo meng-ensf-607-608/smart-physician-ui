@@ -86,7 +86,6 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   checkSymptomsInput(): void {
-    // Trim whitespaces and check if the input is non-empty
     this.isGetSuggestionsButtonDisabled = this.symptoms.trim().length === 0;
   }
 }
