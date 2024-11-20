@@ -24,6 +24,7 @@ export class PatientDetailsComponent implements OnInit {
   recentAppointments: any[] = [];
   displayedColumns: string[] = ['date', 'symptoms', 'diagnosis', 'prescriptions'];
   symptoms: string = '';
+  isGetSuggestionsButtonDisabled: boolean = true;
   thisAppointmentId: string = '';
   suggestions: any = null;
 
@@ -82,5 +83,10 @@ export class PatientDetailsComponent implements OnInit {
 
   navigateToAppointments() {
     this.router.navigate(['/appointments']);
+  }
+
+  checkSymptomsInput(): void {
+    // Trim whitespaces and check if the input is non-empty
+    this.isGetSuggestionsButtonDisabled = this.symptoms.trim().length === 0;
   }
 }
