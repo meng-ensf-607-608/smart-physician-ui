@@ -32,29 +32,40 @@
         <div class="form-group">
           <label for="medication-{{ i }}">Medication*</label>
           <input type="text" id="medication-{{ i }}" formControlName="medication" required />
+          <div *ngIf="prescription.get('medication')?.invalid && prescription.get('medication')?.touched">
+            Medication is required.
+          </div>
         </div>
   
         <div class="form-group">
           <label for="dosage-{{ i }}">Dosage*</label>
           <input type="text" id="dosage-{{ i }}" formControlName="dosage" required />
+          <div *ngIf="prescription.get('dosage')?.invalid && prescription.get('dosage')?.touched">
+            Dosage is required.
+          </div>
         </div>
   
         <div class="form-group">
           <label for="duration-{{ i }}">Duration*</label>
           <input type="text" id="duration-{{ i }}" formControlName="duration" required />
+          <div *ngIf="prescription.get('duration')?.invalid && prescription.get('duration')?.touched">
+            Duration is required.
+          </div>
         </div>
   
         <div class="form-group">
           <label for="frequency-{{ i }}">Frequency*</label>
           <input type="text" id="frequency-{{ i }}" formControlName="frequency" required />
+          <div *ngIf="prescription.get('frequency')?.invalid && prescription.get('frequency')?.touched">
+            Frequency is required.
+          </div>
         </div>
-  
-        <button type="button" (click)="removePrescription(i)">Remove Prescription</button>
+        <button type="button" (click)="addPrescription()">Add</button>
+        <button type="button" (click)="removePrescription(i)">Remove</button>
       </div>
     </div>
   </div>
-    <button type="button" (click)="addPrescription()">Add Prescription</button>
-    <button type="button"(click)="savePrescription()">Save Prescription</button>
-    <button type="button"(click)="closeDialog()">close</button>
+<button type="button"(click)="savePrescription()">Save</button>
+<button type="button"(click)="closeDialog()">close</button>
   </form>
 </div>
