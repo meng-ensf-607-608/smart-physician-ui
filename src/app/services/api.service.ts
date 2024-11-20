@@ -70,4 +70,10 @@ export class ApiService {
     });
   }
   
+  updateAppointmentDetails(appointmentDetailsData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/v1/appointments/update`, appointmentDetailsData, {
+      headers: this.getAuthHeaders(),
+      responseType: 'text' as 'json',
+    });
+  }
 }

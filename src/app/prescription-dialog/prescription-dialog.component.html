@@ -26,7 +26,8 @@
 
   <div class="section">
     <h4>Prescription</h4>
-    <div *ngFor="let prescription of prescriptions.controls; let i = index" [formControlName]="i">
+    <div formArrayName="prescriptions">
+    <div *ngFor="let prescription of prescriptions.controls; let i = index" [formGroupName]="i">
         <h4>Prescription {{ i + 1 }}</h4>
         <div class="form-group">
           <label for="medication-{{ i }}">Medication*</label>
@@ -51,8 +52,9 @@
         <button type="button" (click)="removePrescription(i)">Remove Prescription</button>
       </div>
     </div>
-  
+  </div>
     <button type="button" (click)="addPrescription()">Add Prescription</button>
     <button type="button"(click)="savePrescription()">Save Prescription</button>
+    <button type="button"(click)="closeDialog()">close</button>
   </form>
 </div>

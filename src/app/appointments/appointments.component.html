@@ -1,14 +1,15 @@
 <div class="appointments-page">
+  <mat-card class="appointments-card" style="padding: inherit;">
   <h2>Welcome, {{ profile?.name || 'Physician' }}</h2>
-  <p>{{ currentDate }}</p>
+  <p>Today's date: {{ currentDate }}</p>
 
   <!-- Main Content Divided into Two Sides -->
   <div class="appointments-container">
     <!-- Left Side: Appointments List -->
-    <div class="appointments-list">
+    <mat-card class="appointments-list">
       <h2>Upcoming Appointments</h2>
       <ul *ngIf="appointments.length > 0; else noAppointments">
-        <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointmentDetails.get(appointment.appointmentId))">
+        <li *ngFor="let appointment of appointments" (click)="navigateToPatientDetails(appointmentDetails.get(appointment.appointmentId), appointment.appointmentId)">
           <span>{{ appointmentDetails.get(appointment.appointmentId).patient.name }}</span>
           <span>{{ appointment.startTime + 'Z' | date: 'YYYY-MM-dd HH:mm' }}</span>
         </li>
@@ -17,10 +18,10 @@
       <ng-template #noAppointments>
         <p>No appointments scheduled for today.</p>
       </ng-template>
-    </div>
+    </mat-card>
 
     <!-- Right Side: Profile Section -->
-    <div class="profile-section" *ngIf="profile">
+    <mat-card class="profile-section" *ngIf="profile">
       <!-- Edit Button in Top Right Corner of Profile Section -->
       <button class="edit-button" style="display: none;">Edit</button>
       <h2>{{ profile.name || 'Physician' }}'s Profile</h2>
@@ -40,6 +41,7 @@
           <span>{{ profile.address || 'Not Available' }}</span>
         </div>
       </div>
-    </div>
+    </mat-card>
   </div>
+</mat-card>
 </div>
