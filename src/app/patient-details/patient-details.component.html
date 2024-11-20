@@ -85,9 +85,9 @@
       <mat-card class="symptoms-section">
         <mat-card-content>
           <label for="symptoms-textarea" class="symptoms-label">Get help from AI assistant:</label>
-          <textarea id="symptoms-textarea" #symptomstextarea placeholder="Describe the symptoms... let me help you with the diagnosis" class="styled-textarea"></textarea>
+          <textarea id="symptoms-textarea" [(ngModel)]="symptoms" (input)="checkSymptomsInput()" #symptomstextarea placeholder="Describe the symptoms... let me help you with the diagnosis" class="styled-textarea"></textarea>
           <div class="button-group">
-            <button mat-raised-button color="primary" (click)="getSuggestions(symptomstextarea.value)">Get Suggestions</button>
+            <button mat-raised-button color="primary"  [disabled]="isGetSuggestionsButtonDisabled" (click)="getSuggestions(symptomstextarea.value)">Get Suggestions</button>
             <button mat-raised-button color="primary" (click)="openPrescriptionDialog()">Write Prescription</button>
           </div>
         </mat-card-content>
