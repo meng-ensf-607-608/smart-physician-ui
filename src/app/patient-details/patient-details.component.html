@@ -51,7 +51,7 @@
       </mat-card>
 
       <!-- Medical History as Table with Last Three Appointments -->
-      <mat-card class="medical-history-card">
+      <mat-card *ngIf="recentAppointments && recentAppointments.length > 0" class="medical-history-card">
         <mat-card-subtitle>Appointment History</mat-card-subtitle>
         <table mat-table [dataSource]="recentAppointments" class="mat-elevation-z8 history-table">
           <ng-container matColumnDef="date">
