@@ -59,10 +59,10 @@
                     Frequency is required.
                   </div>
                 </div>
-                <button type="button" (click)="addPrescription()">Add</button>
-                <button type="button" (click)="removePrescription(i)">Remove</button>
             </div>
         </div>
+      <button type="button" (click)="addPrescription()">Add</button>
+      <button type="button" (click)="removePrescription(prescriptions.length - 1)">Remove</button>
       </mat-card-content>
       </mat-card>
       <button type="button"(click)="savePrescription()">Save</button>
