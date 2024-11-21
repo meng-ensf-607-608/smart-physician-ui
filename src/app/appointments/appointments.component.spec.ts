@@ -84,8 +84,8 @@ describe('AppointmentsComponent', () => {
     fixture.detectChanges();
   
     // Verify calls to the service
-    expect(mockAppointmentsService.getAllAppointments).toHaveBeenCalled();
-    expect(mockAppointmentsService.getAllAppointmentDetails).toHaveBeenCalledTimes(mockAppointments.length);
+    expect(mockAppointmentsService.getAllAppointments).toHaveBeenCalledTimes(1);
+    expect(mockAppointmentsService.getAllAppointmentDetails).toHaveBeenCalledTimes(1);
   
     // Verify DOM updates
     const appointmentElements = fixture.debugElement.queryAll(By.css('.appointments-list ul li'));
@@ -122,13 +122,13 @@ describe('AppointmentsComponent', () => {
       appointmentId: appt.appointmentId.toString(), // Convert ID to string to match the Map keys
     }));
     component.appointmentDetails = mockAppointmentDetails;
-    spyOn(component, 'navigateToPatientDetails');
+    spyOn(component, 'navigateToPatientDetails').and.callThrough();
     
     fixture.detectChanges();
     const appointmentElement = fixture.debugElement.query(By.css('.appointments-list ul li:first-child'));
     if (appointmentElement) {
       appointmentElement.nativeElement.click();
-      const patientDetails = mockAppointmentDetails.get('1')?.patient;
+      const patientDetails = mockAppointmentDetails.get('1');
         expect(component.navigateToPatientDetails).toHaveBeenCalledWith(patientDetails, '1');
     } else {
       fail('No appointment element found in the DOM.');

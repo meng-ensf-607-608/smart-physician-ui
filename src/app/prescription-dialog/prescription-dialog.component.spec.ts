@@ -1,8 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { PrescriptionDialogComponent } from './prescription-dialog.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+
+class MatDialogRefMock {
+  close(): void {} // Mock the close method
+}
 
 describe('PrescriptionDialogComponent', () => {
   let component: PrescriptionDialogComponent;
@@ -11,7 +15,10 @@ describe('PrescriptionDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PrescriptionDialogComponent],
-      providers: [provideHttpClient(), provideHttpClientTesting()]
+      providers: [provideHttpClient(), provideHttpClientTesting(),
+        { provide: MatDialogRef, useClass: MatDialogRefMock },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+      ]
     })
     .compileComponents();
 
